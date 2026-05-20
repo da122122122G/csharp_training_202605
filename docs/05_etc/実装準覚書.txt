@@ -1,0 +1,22 @@
+アプリケーション層
+    DomainObject
+    IAdapter
+    IRepository
+
+インフラストラクチャ層
+    Entity
+    AppDbContext
+    Adapter
+    Repository
+
+アプリケーション層
+    IService
+    Service
+
+プレゼンテーション層
+    ViewModel
+    Adapter
+    Controller
+    View
+    Extention
+    Middleware
