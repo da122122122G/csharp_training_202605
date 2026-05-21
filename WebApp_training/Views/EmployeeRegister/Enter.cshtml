@@ -33,7 +33,7 @@
                     @*バリデーション(ModelState)エラーを表示する*@
                     <span asp-validation-for="EMail" class="text-danger"></span>
                 </div>
-                                <div class="mb-3">
+                <div class="mb-3">
                     <label asp-for="DeptId" class="form-label"></label>
                     @*asp-itemsはSelectListItemのリストを受け取る*@
                     <select asp-for="DeptId" asp-items="Model.Departments" class="form-control"></select> 
