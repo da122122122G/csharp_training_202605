@@ -9,23 +9,28 @@ namespace WebApp_training.Applications.Domains
     public class Employee
     {
         public int? Id { get; private set; } // 社員Id
-        public string Name { get; private set; } = string.Empty; // 氏名
+
+        public string Name { get; private set; } = string.Empty;// 氏名
+        public string PhoneNum { get; private set; } = string.Empty;
+        public string EMail { get; private set; } = string.Empty;
         public Department? Department { get; private set; } // 所属部署（null可）
 
         private const int MaxLength = 20;
 
 
-        public Employee(int? id, string name, Department? department)
+        public Employee(int? id, string name, string phoneNum, string eMail, Department? department)
         {
             ValidateName(name);
             Id = id;
             Name = name;
+            PhoneNum = phoneNum;
+            EMail = eMail;
             Department = department;
         }
 
 
-        public Employee(string name, Department? department)
-            : this(null, name, department) { }
+        public Employee(string name, string phoneNum, string eMail, Department? department)
+            : this(null, name, phoneNum, eMail, department) { }
 
         private void ValidateName(string name)
         {
@@ -34,6 +39,7 @@ namespace WebApp_training.Applications.Domains
             if (name.Length > MaxLength)
                 throw new DomainException($"氏名は{MaxLength}文字以内で入力してください");
         }
+
 
 
         public void ChangeName(string name)
@@ -45,6 +51,16 @@ namespace WebApp_training.Applications.Domains
         public void ChangeDepartment(Department? department)
         {
             Department = department;
+        }
+
+        public void ChangePhoneNum(string phoneNum)
+        {
+            PhoneNum = phoneNum;
+        }
+
+        public void ChangeDepartment(string eMail)
+        {
+            EMail = eMail;
         }
 
 

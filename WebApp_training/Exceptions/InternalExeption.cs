@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebApp_training.Applications.Domains;
 
-namespace WebApp_training.Exceptionspublic;
+namespace WebApp_training.Exceptions;
 
 class InternalException : Exception
 {

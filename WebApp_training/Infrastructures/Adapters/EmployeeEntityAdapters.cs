@@ -28,11 +28,11 @@ IConverter<Employee, EmployeeEntity>, IRestorer<Employee, EmployeeEntity>
         }
         if (domain.PhoneNum != null)
         {
-            entity.PhoneNum = domain.PhoneNum.Value;
+            entity.PhoneNum = domain.PhoneNum;
         }
         if (domain.EMail != null)
         {
-            entity.EMail = domain.EMail.Value;
+            entity.EMail = domain.EMail;
         }
         return entity;
     }
@@ -43,7 +43,10 @@ IConverter<Employee, EmployeeEntity>, IRestorer<Employee, EmployeeEntity>
         var employee = new Employee(
             target.EmpId,
             target.EmpName,
+            target.PhoneNum ?? string.Empty,
+            target.EMail ?? string.Empty,
             null
+
         );
         return employee;
     }

@@ -24,11 +24,11 @@ public class EmployeeRegisterViewModel
 
     [Display(Name = "電話番号")]
     [Required(ErrorMessage = "{0}は選択必須です。")]
-    public string? PhoneNum { get; set; } = 0;
+    public string? PhoneNum { get; set; } = string.Empty;
 
     [Display(Name = "所属部署")]
     [Required(ErrorMessage = "{0}は選択必須です。")]
-    public string? EMail { get; set; } = 0;
+    public string? EMail { get; set; } = string.Empty;
 
     public void SetDepartments(List<Department> departments)
     {
