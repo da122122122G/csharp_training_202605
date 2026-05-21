@@ -10,7 +10,7 @@ using WebApp_training.Infrastructures.Context;
 using WebApp_training.Infrastructures.Entities;
 using WebApp_training.Infrastructures.Repositories;
 
-namespace WebApp_Exercise.Tests.Infrastructures.Repositories;
+namespace _03_tests;
 
 [TestClass]
 public sealed class DepartmentRepositoryTests
@@ -20,52 +20,52 @@ public sealed class DepartmentRepositoryTests
     {
         using var context = CreateContext(
         [
-            new DepartmentEntity { Id = 1, Name = "Books" },
-            new DepartmentEntity { Id = 2, Name = "Games" },
+            new DepartmentEntity { DeptId = 1, Name = "未所属" },
+            new DepartmentEntity { DeptId = 2, Name = "総務部" },
         ]);
         var repository = CreateRepository(context);
 
-        var categories = repository.FindAll();
+        var departments = repository.FindAll();
 
-        Assert.AreEqual(2, categories.Count);
-        AssertCategory(categories[0], 1, "Books");
-        AssertCategory(categories[1], 2, "Games");
+        Assert.AreEqual(2, departments.Count);
+        AssertDepartment(departments[0], 1, "未所属");
+        AssertDepartment(departments[1], 2, "総務部");
     }
 
     [TestMethod]
-    public void FindById_WhenCategoryExists_ReturnsCategory()
+    public void FindById_WhenDepartmentExists_ReturnsDepartment()
     {
         using var context = CreateContext(
         [
-            new ItemCategoryEntity { Id = 1, Name = "Books" },
-            new ItemCategoryEntity { Id = 2, Name = "Games" },
+            new DepartmentEntity { DeptId = 1, Name = "未所属" },
+            new DepartmentEntity { DeptId = 2, Name = "総務部" },
         ]);
         var repository = CreateRepository(context);
 
-        var category = repository.FindById(2);
+        var department = repository.FindById(2);
 
-        Assert.IsNotNull(category);
-        AssertCategory(category, 2, "Games");
+        Assert.IsNotNull(department);
+        AssertDepartment(department, 2, "総務部");
     }
 
     [TestMethod]
-    public void FindById_WhenCategoryDoesNotExist_ReturnsNull()
+    public void FindById_WhenDepartmentDoesNotExist_ReturnsNull()
     {
         using var context = CreateContext(
         [
-            new ItemCategoryEntity { Id = 1, Name = "Books" },
+            new DepartmentEntity { DeptId = 1, Name = "未所属" },
         ]);
         var repository = CreateRepository(context);
 
-        var category = repository.FindById(2);
+        var department = repository.FindById(2);
 
-        Assert.IsNull(category);
+        Assert.IsNull(department);
     }
 
     [TestMethod]
     public void FindAll_WhenDbSetThrows_WrapsExceptionInInternalException()
     {
-        using var context = CreateContext(new ThrowingDbSet<ItemCategoryEntity>());
+        using var context = CreateContext(new ThrowingDbSet<DepartmentEntity>());
         var repository = CreateRepository(context);
 
         var exception = Assert.ThrowsException<InternalException>(() => repository.FindAll());
@@ -73,22 +73,22 @@ public sealed class DepartmentRepositoryTests
         Assert.IsInstanceOfType<InvalidOperationException>(exception.InnerException);
     }
 
-    private static ItemCategoryRepository CreateRepository(AppDbContext context)
+    private static DepartmentRepository CreateRepository(AppDbContext context)
     {
-        return new ItemCategoryRepository(context, new ItemCategoryEntityAdapter());
+        return new DepartmentRepository(context, new DepartmentEntityAdapter());
     }
 
-    private static AppDbContext CreateContext(IEnumerable<ItemCategoryEntity> entities)
+    private static AppDbContext CreateContext(IEnumerable<DepartmentEntity> entities)
     {
-        return CreateContext(new QueryableDbSet<ItemCategoryEntity>(entities));
+        return CreateContext(new QueryableDbSet<DepartmentEntity>(entities));
     }
 
-    private static AppDbContext CreateContext(DbSet<ItemCategoryEntity> itemCategories)
+    private static AppDbContext CreateContext(DbSet<DepartmentEntity> departments)
     {
         var options = new DbContextOptionsBuilder<AppDbContext>().Options;
         return new AppDbContext(options)
         {
-            ItemCategories = itemCategories,
+            Departments = departments,
         };
     }
 

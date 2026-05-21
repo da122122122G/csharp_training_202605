@@ -9,3 +9,9 @@
 09ログイン
 10ログアウト
 
+dotnet new mstest -n WebApp_training.Tests
+dotnet add WebApp_training.Tests/WebApp_training.Tests.csproj reference WebApp_training/WebApp_training.csproj
+
+直で移動
+
+namespace WebApp_training.Tests;
