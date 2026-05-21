@@ -36,7 +36,9 @@
                 <div class="mb-3">
                     <label asp-for="DeptId" class="form-label"></label>
                     @*asp-itemsはSelectListItemのリストを受け取る*@
-                    <select asp-for="DeptId" asp-items="Model.Departments" class="form-control"></select> 
+                    <select asp-for="DeptId" asp-items="Model.Departments" class="form-control">
+                        <option value="1">選択してください</option>
+                    </select> 
                 </div>
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary">完了</button>
