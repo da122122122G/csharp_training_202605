@@ -23,11 +23,13 @@ public class EmployeeRegisterViewModel
     public string? DeptName { get; set; } = string.Empty;
 
     [Display(Name = "電話番号")]
-    [Required(ErrorMessage = "{0}は選択必須です。")]
+    [RegularExpression(@"^0\d{1,4}-\d{1,4}-\d{4}$", ErrorMessage = "電話番号の形式（例: 03-1234-5678）で入力してください。")]
+    [Required(ErrorMessage = "{0}は入力必須です。")]
     public string? PhoneNum { get; set; } = string.Empty;
 
-    [Display(Name = "所属部署")]
-    [Required(ErrorMessage = "{0}は選択必須です。")]
+    [Display(Name = "メールアドレス")]
+    [EmailAddress(ErrorMessage = "{0}の形式で入力してください")]
+    [Required(ErrorMessage = "{0}は入力必須です。")]
     public string? EMail { get; set; } = string.Empty;
 
     public void SetDepartments(List<Department> departments)

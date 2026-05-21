@@ -18,11 +18,11 @@ public class EmployeeEntity
     public string EmpName { get; set; } = string.Empty;
 
     [Column("dept_id")]
-    public int? DeptId { get; set; }
+    public int? DeptId { get; set; } = 1;
 
     [Column("phone_number")]
-    public string? PhoneNum { get; set; }
+    public string? PhoneNum { get; set; } = string.Empty;
 
     [Column("e_mail")]
-    public string? EMail { get; set; }
+    public string? EMail { get; set; } = string.Empty;
 }
