@@ -58,7 +58,7 @@ namespace WebApp_training.Applications.Domains
             PhoneNum = phoneNum;
         }
 
-        public void ChangeDepartment(string eMail)
+        public void ChangeEmail(string eMail)
         {
             EMail = eMail;
         }
