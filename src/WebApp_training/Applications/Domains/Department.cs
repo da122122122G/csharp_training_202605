@@ -13,11 +13,7 @@ namespace WebApp_training.Applications.Domains
         public string? Name { get; private set; } = string.Empty;    // 部署名
         private const int MaxLength = 20; // 部署名の長さ
 
-        /// <summary>
-        /// コンストラクタ
-        /// </summary>
-        /// <param name="id">部署Id</param>
-        /// <param name="name">部署名</param>
+
         public Department(int? id, string? name)
         {
             // 部署名のルール検証
@@ -26,26 +22,15 @@ namespace WebApp_training.Applications.Domains
             this.Name = name;
         }
 
-        /// <summary>
-        /// コンストラクタ
-        /// </summary>
-        /// <param name="name">部署名</param>
+
         public Department(string? name) : this(null, name) { }
 
-        /// <summary>
-        /// コンストラクタ
-        /// </summary>
-        /// <param name="id">部署Id</param>
-        /// <returns></returns>
         public Department(int? id)
         {
             this.Id = id;
         }
 
-        /// <summary>
-        /// 部署名のルール検証
-        /// </summary>
-        /// <param name="name"></param>
+
         private void validateDepartmentName(string? name)
         {
             if (name is not null)
@@ -57,10 +42,7 @@ namespace WebApp_training.Applications.Domains
             }
         }
 
-        /// <summary>
-        /// 部署名の変更
-        /// </summary>
-        /// <param name="name"></param>
+
         public void ChangeName(string? name)
         {
             // 部署名のルール検証
@@ -68,11 +50,7 @@ namespace WebApp_training.Applications.Domains
             this.Name = name;
         }
 
-        /// <summary>
-        /// 等価性の検証
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
+
         public override bool Equals(object? obj)
         {
             if (ReferenceEquals(this, obj)) return true;

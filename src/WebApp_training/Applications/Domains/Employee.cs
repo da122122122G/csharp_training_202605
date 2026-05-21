@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApp_training.Exceptions;
 
 namespace WebApp_training.Applications.Domains
 {
@@ -13,12 +14,7 @@ namespace WebApp_training.Applications.Domains
 
         private const int MaxLength = 20;
 
-        /// <summary>
-        /// コンストラクタ
-        /// </summary>
-        /// <param name="id">社員Id</param>
-        /// <param name="name">氏名</param>
-        /// <param name="department">所属部署</param>
+
         public Employee(int? id, string name, Department? department)
         {
             ValidateName(name);
@@ -27,17 +23,10 @@ namespace WebApp_training.Applications.Domains
             Department = department;
         }
 
-        /// <summary>
-        /// ID未定の社員を作成する場合のコンストラクタ
-        /// </summary>
-        /// <param name="name">氏名</param>
-        /// <param name="department">所属部署</param>
+
         public Employee(string name, Department? department)
             : this(null, name, department) { }
 
-        /// <summary>
-        /// 氏名の検証
-        /// </summary>
         private void ValidateName(string name)
         {
             if (string.IsNullOrWhiteSpace(name))
@@ -46,26 +35,19 @@ namespace WebApp_training.Applications.Domains
                 throw new DomainException($"氏名は{MaxLength}文字以内で入力してください");
         }
 
-        /// <summary>
-        /// 氏名を変更する
-        /// </summary>
+
         public void ChangeName(string name)
         {
             ValidateName(name);
             Name = name;
         }
 
-        /// <summary>
-        /// 所属部署を変更する
-        /// </summary>
         public void ChangeDepartment(Department? department)
         {
             Department = department;
         }
 
-        /// <summary>
-        /// 等価性（IDによる比較）
-        /// </summary>
+
         public override bool Equals(object? obj)
         {
             if (ReferenceEquals(this, obj)) return true;

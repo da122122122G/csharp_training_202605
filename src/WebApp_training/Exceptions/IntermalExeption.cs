@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApp_Sample.Applications.Domains;
 
 namespace WebApp_training.Exceptionspublic;
 
