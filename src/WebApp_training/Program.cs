@@ -1,7 +1,12 @@
+using WebApp_training.Presentations.Extensions;
+using WebApp_training.Presentations.Middlewares;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.SettingDependencyInjection(builder.Configuration);
 
 var app = builder.Build();
 
