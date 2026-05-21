@@ -13,13 +13,16 @@ public class EmployeeRegisterViewModel
 
     [Display(Name = "氏名")]
     [Required(ErrorMessage = "{0}は入力必須です。")]
+    [StringLength(20, ErrorMessage = "{1}文字以内で入力してください。")]
     public string? Name { get; set; } = string.Empty;
 
     [Display(Name = "所属部署")]
     [Required(ErrorMessage = "{0}は選択必須です。")]
+    [StringLength(20, ErrorMessage = "{1}文字以内で入力してください。")]
     public int? DeptId { get; set; } = 0;
 
     [Display(Name = "部署名")]
+    [StringLength(20, ErrorMessage = "{1}文字以内で入力してください。")]
     public string? DeptName { get; set; } = string.Empty;
 
     [Display(Name = "電話番号")]
@@ -29,6 +32,7 @@ public class EmployeeRegisterViewModel
 
     [Display(Name = "メールアドレス")]
     [EmailAddress(ErrorMessage = "{0}の形式で入力してください")]
+    [StringLength(50, ErrorMessage = "{1}文字以内で入力してください。")]
     [Required(ErrorMessage = "{0}は入力必須です。")]
     public string? EMail { get; set; } = string.Empty;
 
