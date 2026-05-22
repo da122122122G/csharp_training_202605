@@ -18,7 +18,7 @@ public class EmployeeRegisterViewModel
 
     [Display(Name = "所属部署")]
     [Required(ErrorMessage = "{0}は選択必須です。")]
-    [StringLength(20, ErrorMessage = "{1}文字以内で入力してください。")]
+    [Range(1, 99999, ErrorMessage = "5桁以内で入力してください。")]
     public int? DeptId { get; set; } = 0;
 
     [Display(Name = "部署名")]
