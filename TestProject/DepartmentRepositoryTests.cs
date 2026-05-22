@@ -1,14 +1,14 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using WebApp_Exercise.Applications.Domains;
-using WebApp_Exercise.Exceptions;
-using WebApp_Exercise.Infrastructures.Adapters;
-using WebApp_Exercise.Infrastructures.Context;
-using WebApp_Exercise.Infrastructures.Entities;
-using WebApp_Exercise.Infrastructures.Repositories;
-using WebApp_Exercise.TestProject.TestDoubles;
+using WebApp_training.Applications.Domains;
+using WebApp_training.Exceptions;
+using WebApp_training.Infrastructures.Adapters;
+using WebApp_training.Infrastructures.Context;
+using WebApp_training.Infrastructures.Entities;
+using WebApp_training.Infrastructures.Repositories;
 
-namespace WebApp_Exercise.TestProdect;
+
+namespace WebApp_training.TestProdect;
 
 [TestClass]
 public sealed class DepartmentRepositoryTests
@@ -18,16 +18,16 @@ public sealed class DepartmentRepositoryTests
     {
         using var context = CreateContext(
         [
-            new DepartmentEntity { DeptId = 1, Name = "未所属" },
-            new DepartmentEntity { DeptId = 2, Name = "総務部" },
+            new DepartmentEntity { DeptId = 1, DeptName = "未所属" },
+            new DepartmentEntity { DeptId = 2, DeptName = "総務部" },
         ]);
         var repository = CreateRepository(context);
 
         var departments = repository.FindAll();
 
         Assert.AreEqual(2, departments.Count);
-        AssertCategory(departments[0], 1, "未所属");
-        AssertCategory(departments[1], 2, "総務部");
+        AssertDepartment(departments[0], 1, "未所属");
+        AssertDepartment(departments[1], 2, "総務部");
     }
 
     [TestMethod]
@@ -35,8 +35,8 @@ public sealed class DepartmentRepositoryTests
     {
         using var context = CreateContext(
         [
-            new DepartmentEntity { DeptId = 1, Name = "未所属" },
-            new DepartmentEntity { DeptId = 2, Name = "総務部" },
+            new DepartmentEntity { DeptId = 1, DeptName = "未所属" },
+            new DepartmentEntity { DeptId = 2, DeptName = "総務部" },
         ]);
         var repository = CreateRepository(context);
 
@@ -51,7 +51,7 @@ public sealed class DepartmentRepositoryTests
     {
         using var context = CreateContext(
         [
-            new DepartmentEntity { DeptId = 1, Name = "未所属" },
+            new DepartmentEntity { DeptId = 1, DeptName = "未所属" },
         ]);
         var repository = CreateRepository(context);
 
@@ -90,9 +90,9 @@ public sealed class DepartmentRepositoryTests
         };
     }
 
-    private static void AssertDepartment(Department department, int Deptid, string name)
+    private static void AssertDepartment(Department department, int id, string name)
     {
-        Assert.AreEqual(DeptId, department.DeptId);
-        Assert.AreEqual(DeptName, department.Name);
+        Assert.AreEqual(id, department.Id);
+        Assert.AreEqual(name, department.Name);
     }
 }
