@@ -55,9 +55,13 @@ public class DepartmentRegisterController : Controller
     public IActionResult Enter()
     {
         DepartmentRegisterViewModel? viewModel = null;
-        // [戻る]ボタンへの対応
-        // TempDataからDepartmentRegisterViewModelを取得する
         viewModel = _empDataStore.Load(this);
+        if (viewModel == null)
+        {
+            // 従業員登録ViewModelを生成する
+            viewModel = new DepartmentRegisterViewModel();
+        }
+        // 部署一覧を取得してViewModelに設定する(SelectListItem形式)
         // viewModelをviewに渡して画面表示する
         return View(viewModel);
     }
@@ -76,14 +80,16 @@ public class DepartmentRegisterController : Controller
             // 入力画面の表示
             return View("Enter", viewModel);
         }
-        if (!string.IsNullOrEmpty(viewModel.Name) && _departmentRegisterService.ExistsByName(viewModel.Name) == true) // 入力値あり
+        else if (!string.IsNullOrEmpty(viewModel.Name) && _departmentRegisterService.ExistsByName(viewModel.Name) == true) // 入力値あり
         {
             // 入力画面の表示
             return View("Enter", viewModel);
         }
         // 選択された部署のIdで部署データを取得する
-        _logger.LogInformation($"部署Id:{viewModel.DeptId ?? 0}の部署を取得する");
-
+        else
+        {
+            _logger.LogInformation($"部署Id:{viewModel.DeptId ?? 0}の部署を取得する");
+        }
         // 確認画面を表示する
         return View(viewModel);
     }
