@@ -76,7 +76,7 @@ public class DepartmentRegisterController : Controller
             // 入力画面の表示
             return View("Enter", viewModel);
         }
-        if (!string.IsNullOrEmpty(viewModel.DeptName) && _departmentRegisterService.ExistsByName(viewModel.DeptName) == true) // 入力値あり
+        if (!string.IsNullOrEmpty(viewModel.Name) && _departmentRegisterService.ExistsByName(viewModel.Name) == true) // 入力値あり
         {
             // 入力画面の表示
             return View("Enter", viewModel);

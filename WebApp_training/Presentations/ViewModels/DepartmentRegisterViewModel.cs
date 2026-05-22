@@ -13,7 +13,7 @@ public class DepartmentRegisterViewModel
 
     [Display(Name = "部署名")]
     [StringLength(20, ErrorMessage = "{1}文字以内で入力してください。")]
-    public string? DeptName { get; set; } = string.Empty;
+    public string? Name { get; set; } = string.Empty;
 
     [Display(Name = "部署番号")]
     [Required(ErrorMessage = "{0}は選択必須です。")]
@@ -27,7 +27,7 @@ public class DepartmentRegisterViewModel
 
     public override string ToString()
     {
-        return $"DeptName={DeptName} , Departments={Departments} ";
+        return $"DeptName={Name} , Departments={Departments} ";
     }
 }
 
