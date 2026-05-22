@@ -95,7 +95,7 @@ public sealed class DepartmentRepositoryTests
     private static void AssertDepartment(Department department, int id, string name)
     {
         Assert.AreEqual(id, department.Id);
-        Assert.AreEqual(name, department.DeptName);
+        Assert.AreEqual(name, department.Name);
     }
 
     private sealed class QueryableDbSet<TEntity> : DbSet<TEntity>, IQueryable<TEntity>, IEnumerable<TEntity>
