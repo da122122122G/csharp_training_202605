@@ -13,7 +13,7 @@ public class EmployeeRegisterViewModel
 
     [Display(Name = "氏名")]
     [Required(ErrorMessage = "{0}は入力必須です。")]
-    [StringLength(20, ErrorMessage = "{1}文字以内で入力してください。")]
+    [StringLength(50, ErrorMessage = "{1}文字以内で入力してください。")]
     public string? Name { get; set; } = string.Empty;
 
     [Display(Name = "所属部署")]
