@@ -51,4 +51,40 @@ public class EmployeeRepository : IEmployeeRepository
                 "従業員の永続化ができませんでした。", e);
         }
     }
+
+    public Employee? FindById(int id)
+    {
+        try
+        {
+            var result = _context.Employees.FirstOrDefault(e => e.EmpId == id);
+            if (result == null)
+            {
+                return null;
+            }
+            return _adapter.Restore(result);
+        }
+        catch (Exception e)
+        {
+            throw new InternalException(
+                "指定された社員Idの社員を取得できませんでした。", e);
+        }
+    }
+
+    public Employee? FindByName(string name)
+    {
+        try
+        {
+            var result = _context.Employees.FirstOrDefault(e => e.EmpName.Contains(name));
+            if (result == null)
+            {
+                return null;
+            }
+            return _adapter.Restore(result);
+        }
+        catch (Exception e)
+        {
+            throw new InternalException(
+                "指定された名前を含む社員を取得できませんでした。", e);
+        }
+    }
 }

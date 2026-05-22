@@ -72,4 +72,16 @@ public class DepartmentRepository : IDepartmentRepository
                 "指定された部署Idの部署を取得できませんでした。", e);
         }
     }
+
+    public bool ExistsByName(string name)
+    {
+        try
+        {
+            return _context.Departments.Any(i => i.DeptName == name);
+        }
+        catch (Exception e)
+        {
+            throw new InternalException("引数に指定された部署名の存在有無を取得できませんでした。", e);
+        }
+    }
 }
