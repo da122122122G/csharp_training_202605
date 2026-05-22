@@ -6,7 +6,7 @@ using WebApp_training.Applications.Domains;
 
 namespace WebApp_training.Exceptions;
 
-class InternalException : Exception
+public class InternalException : Exception
 {
     public InternalException(string message)
     : base(message) { }

@@ -20,8 +20,8 @@ public sealed class DepartmentRepositoryTests
     {
         using var context = CreateContext(
         [
-            new DepartmentEntity { DeptId = 1, Name = "未所属" },
-            new DepartmentEntity { DeptId = 2, Name = "総務部" },
+            new DepartmentEntity { DeptId = 1, DeptName = "未所属" },
+            new DepartmentEntity { DeptId = 2, DeptName = "総務部" },
         ]);
         var repository = CreateRepository(context);
 
@@ -37,8 +37,8 @@ public sealed class DepartmentRepositoryTests
     {
         using var context = CreateContext(
         [
-            new DepartmentEntity { DeptId = 1, Name = "未所属" },
-            new DepartmentEntity { DeptId = 2, Name = "総務部" },
+            new DepartmentEntity { DeptId = 1, DeptName = "未所属" },
+            new DepartmentEntity { DeptId = 2, DeptName = "総務部" },
         ]);
         var repository = CreateRepository(context);
 
@@ -53,7 +53,7 @@ public sealed class DepartmentRepositoryTests
     {
         using var context = CreateContext(
         [
-            new DepartmentEntity { DeptId = 1, Name = "未所属" },
+            new DepartmentEntity { DeptId = 1, DeptName = "未所属" },
         ]);
         var repository = CreateRepository(context);
 
@@ -95,7 +95,7 @@ public sealed class DepartmentRepositoryTests
     private static void AssertDepartment(Department department, int id, string name)
     {
         Assert.AreEqual(id, department.Id);
-        Assert.AreEqual(name, department.Name);
+        Assert.AreEqual(name, department.DeptName);
     }
 
     private sealed class QueryableDbSet<TEntity> : DbSet<TEntity>, IQueryable<TEntity>, IEnumerable<TEntity>
