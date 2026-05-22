@@ -10,4 +10,6 @@ public interface IDepartmentRepository
 {
     List<Department> FindAll();
     Department? FindById(int id);
+    bool ExistsByName(string name);
+    void Create(Department department);
 }

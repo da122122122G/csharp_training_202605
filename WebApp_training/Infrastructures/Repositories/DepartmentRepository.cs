@@ -84,4 +84,19 @@ public class DepartmentRepository : IDepartmentRepository
             throw new InternalException("引数に指定された部署名の存在有無を取得できませんでした。", e);
         }
     }
+
+    public void Create(Department department)
+    {
+        try
+        {
+            var entity = _adapter.Convert(department);
+            _context.Departments.Add(entity);
+            _context.SaveChanges();
+        }
+        catch (Exception e)
+        {
+            throw new InternalException(
+                "従業員の永続化ができませんでした。", e);
+        }
+    }
 }

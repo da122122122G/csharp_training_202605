@@ -95,4 +95,36 @@ public sealed class DepartmentRepositoryTests
         Assert.AreEqual(id, department.Id);
         Assert.AreEqual(name, department.Name);
     }
+
+    [TestMethod]
+    public void ExistsByName_WhenDepartmentExists_ReturnsBool()
+    {
+        using var context = CreateContext(
+        [
+            new DepartmentEntity { DeptId = 1, DeptName = "未所属" },
+            new DepartmentEntity { DeptId = 2, DeptName = "総務部" },
+        ]);
+        var repository = CreateRepository(context);
+
+        var department = repository.ExistsByName("未所属");
+
+        Assert.IsNotNull(department);
+        Assert.IsTrue(department);
+    }
+
+    [TestMethod]
+    public void ExistsByName_WhenDepartmentDoesntExists_ReturnsBool()
+    {
+        using var context = CreateContext(
+        [
+            new DepartmentEntity { DeptId = 1, DeptName = "未所属" },
+            new DepartmentEntity { DeptId = 2, DeptName = "総務部" },
+        ]);
+        var repository = CreateRepository(context);
+
+        var department = repository.ExistsByName("帰宅部");
+
+        Assert.IsNotNull(department);
+        Assert.IsFalse(department);
+    }
 }
