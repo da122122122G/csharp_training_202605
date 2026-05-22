@@ -55,7 +55,7 @@ public sealed class DepartmentRepositoryTests
         ]);
         var repository = CreateRepository(context);
 
-        var department = repository.FindById(2);
+        var department = repository.FindById(10);
 
         Assert.IsNull(department);
     }
