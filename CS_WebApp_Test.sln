@@ -5,7 +5,7 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp_training", "WebApp_training\WebApp_training.csproj", "{148AF127-E596-49D2-9EF1-383181F037AE}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03_tests", "03_tests\03_tests.csproj", "{70B26302-9627-4390-BA0A-6A3A225FF08E}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03_tests", "docs\03_tests\03_tests.csproj", "{70B26302-9627-4390-BA0A-6A3A225FF08E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
