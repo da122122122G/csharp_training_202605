@@ -16,11 +16,11 @@ public class DepartmentRegisterController : Controller
     /// </summary>
     private readonly ILogger<DepartmentRegisterController> _logger;
     /// <summary>
-    /// 従業員登録サービスインターフェイス
+    /// 部署登録サービスインターフェイス
     /// </summary>
     private readonly IDepartmentRegisterService _departmentRegisterService;
     /// <summary>
-    /// 従業員登録ViewModelをDepartmentに変換するアダプター
+    /// 部署登録ViewModelをDepartmentに変換するアダプター
     /// </summary>
     private readonly DepartmentRegisterViewModelAdapter _adapter;
     /// <summary>
@@ -32,8 +32,8 @@ public class DepartmentRegisterController : Controller
     /// コンストラクタ
     /// </summary>
     /// <param name="logger">ロガー</param>
-    /// <param name="departmentRegisterService">従業員登録サービスインターフェイス</param>
-    /// <param name="departmentRegisterViewModelAdapter">従業員登録ViewModelをDepartmentに変換するアダプター</param>
+    /// <param name="departmentRegisterService">部署登録サービスインターフェイス</param>
+    /// <param name="departmentRegisterViewModelAdapter">部署登録ViewModelをDepartmentに変換するアダプター</param>
     /// <param name="empDataStore">TempDataを通じて一時的にViewModelを保存・復元するためのクラス</param>
     public DepartmentRegisterController(
         ILogger<DepartmentRegisterController> logger,
@@ -58,10 +58,9 @@ public class DepartmentRegisterController : Controller
         viewModel = _empDataStore.Load(this);
         if (viewModel == null)
         {
-            // 従業員登録ViewModelを生成する
+            // 部署登録ViewModelを生成する
             viewModel = new DepartmentRegisterViewModel();
         }
-        // 部署一覧を取得してViewModelに設定する(SelectListItem形式)
         // viewModelをviewに渡して画面表示する
         return View(viewModel);
     }
@@ -82,13 +81,14 @@ public class DepartmentRegisterController : Controller
         }
         else if (!string.IsNullOrEmpty(viewModel.Name) && _departmentRegisterService.ExistsByName(viewModel.Name) == true) // 入力値あり
         {
+            ModelState.AddModelError(nameof(viewModel.Name), "入力された部署名は既に登録されています。");
             // 入力画面の表示
             return View("Enter", viewModel);
         }
         // 選択された部署のIdで部署データを取得する
         else
         {
-            _logger.LogInformation($"部署Id:{viewModel.DeptId ?? 0}の部署を取得する");
+            _logger.LogInformation($"部署Id:{viewModel.DeptId ?? 1}の部署を取得する");
         }
         // 確認画面を表示する
         return View(viewModel);
@@ -126,7 +126,7 @@ public class DepartmentRegisterController : Controller
         }
         // DepartmentRegisterFormをドメインモデル:Departmentに変換する
         var department = _adapter.Restore(viewModel!);
-        // 新しい従業員を登録する
+        // 新しい部署を登録する
         _departmentRegisterService.Register(department);
         return View(viewModel);
     }

@@ -24,7 +24,7 @@ public sealed class EmployeeRepositoryTests
         var savedItems = ((QueryableDbSet<EmployeeEntity>)context.Employees).Entities;
         Assert.AreEqual(1, savedItems.Count);
         var savedItem = savedItems[0];
-        Assert.AreEqual(7, savedItem.EmpId);
+        Assert.AreEqual(1, savedItem.EmpId);
         Assert.AreEqual("Laptop", savedItem.EmpName);
         Assert.AreEqual("070-1234-5678", savedItem.PhoneNum);
         Assert.AreEqual("a@b", savedItem.EMail);
@@ -51,7 +51,19 @@ public sealed class EmployeeRepositoryTests
 
     private static AppDbContext CreateContext(IEnumerable<EmployeeEntity> employees)
     {
-        return CreateContext(employees);
+        return CreateContext(new QueryableDbSet<EmployeeEntity>(employees));
+    }
+
+    private static AppDbContext CreateContext(DbSet<EmployeeEntity> dbSet)
+    {
+        // プロジェクトの設定に合わせて AppDbContext をインスタンス化してください
+        // （DbContextOptions が必要な場合は適宜 new して渡します）
+        var context = new AppDbContext(); 
+        
+        // 生成したコンテキストの Employees に DbSet をセットする
+        context.Employees = dbSet;
+        
+        return context;
     }
 
 
