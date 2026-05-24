@@ -9,4 +9,6 @@ namespace WebApp_training.Applications.Repositories;
 public interface IEmployeeRepository
 {
     void Create(Employee employee);
+    List<Department> FindAll();
+    
 }

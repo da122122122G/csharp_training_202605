@@ -87,4 +87,24 @@ public class EmployeeRepository : IEmployeeRepository
                 "指定された名前を含む社員を取得できませんでした。", e);
         }
     }
+
+    public List<Employee> FindAll()
+    {
+        try
+        {
+            var entities = _context.Employees.ToList();
+            var results = new List<Employee>();
+            foreach (var entity in entities)
+            {
+                results.Add(_adapter.Restore(entity));
+            }
+            return results;
+        }
+        catch (Exception e)
+        {
+            throw new InternalException(
+                "従業員一覧を取得できませんでした。", e);
+        }
+    }
+
 }

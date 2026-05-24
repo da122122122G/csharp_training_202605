@@ -71,6 +71,7 @@ public static class DependencyExtension
         // 従業員登録サービスインターフェイスの実装
         services.AddScoped<IEmployeeRegisterService, EmployeeRegisterService>();
         services.AddScoped<IDepartmentRegisterService, DepartmentRegisterService>();
+        services.AddScoped<IEmployeeService, EmployeeService>();
     }
 
     /// <summary>
