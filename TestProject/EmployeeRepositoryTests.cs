@@ -46,7 +46,6 @@ public class EmployeeRepositoryTests
         IsNotNull(actual);
         AreEqual(1, actual.Id);
         AreEqual("田中太郎", actual.Name);
-        //AreEqual(2, actual.Department!.Id);
         AreEqual("012-3456-7890", actual.PhoneNum);
         AreEqual("afdbv@awerv", actual.EMail);
     }
@@ -87,7 +86,6 @@ public class EmployeeRepositoryTests
         IsNotNull(actual);
         AreEqual(1, actual.Id);
         AreEqual("田中太郎", actual.Name);
-        //AreEqual(2, actual.Department!.Id);
         AreEqual("012-3456-7890", actual.PhoneNum);
         AreEqual("afdbv@awerv", actual.EMail);
     }
@@ -98,4 +96,19 @@ public class EmployeeRepositoryTests
         var actual = _repository.FindByName("四月朔日");
         IsNull(actual);
     }
+
+    [TestMethod]
+    public void FindAll_Result()
+    {
+        var actual = _repository.FindAll();
+
+        AreEqual(5, actual.Count);
+        IsTrue(actual.Any(d => d.Equals(new Employee(1, "田中太郎", "012-3456-7890", "afdbv@awerv", null))));
+        IsTrue(actual.Any(d => d.Equals(new Employee(2, "鈴木三郎", "123-4567-8901", "okjnbg@okjh", null))));
+        IsTrue(actual.Any(d => d.Equals(new Employee(3, "佐藤花子", "234-5678-9012", "aeruvn@kerun", null))));
+        IsTrue(actual.Any(d => d.Equals(new Employee(4, "中田彩子", "345-6789-0123", "ureid@cxmvae", null))));
+        IsTrue(actual.Any(d => d.Equals(new Employee(5, "加藤圭太", "45-6789-0123", "asdgv@qer", null))));
+
+    }
+
 }
