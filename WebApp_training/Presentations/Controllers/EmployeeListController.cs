@@ -39,4 +39,10 @@ public class EmployeeController : Controller
 
         return View(viewModels);
     }
+
+    [HttpPost("Back")]
+    public IActionResult Back(EmployeeRegisterViewModel viewModel)
+    {
+        return RedirectToAction("Enter");
+    }
 }

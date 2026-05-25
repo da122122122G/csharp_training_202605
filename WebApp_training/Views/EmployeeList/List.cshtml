@@ -1,6 +1,6 @@
 @using WebApp_training.Presentations.ViewModels
 
-@model IEnumerable<WebApp_training.Presentations.ViewModels.EmployeeListItemViewModel>
+@model IEnumerable<EmployeeListItemViewModel>
 
 @{
     ViewData["Title"] = "従業員一覧";
@@ -8,7 +8,7 @@
 <h2 class="text-center mt-4">@ViewData["Title"]</h2>
 <div class="container mt-5">
     <div class="row justify-content-center">
-        <div class="col-md-6 col-sm-8 text-center">
+        <div class="col-md-10 col-sm-12 text-center">
             <div class="alert alert-success" role="alert">
                 従業員情報の読み込みが完了しました。
             </div>
@@ -16,7 +16,9 @@
                 <thead>
                     <tr>
                         <th>社員ID</th>
-                        <th>氏名</th>
+                        <th>氏名</th>                        
+                        <th>部署ID</th>
+                        <th>部署名</th>
                         <th>電話番号</th>
                         <th>メールアドレス</th>
                     </tr>
