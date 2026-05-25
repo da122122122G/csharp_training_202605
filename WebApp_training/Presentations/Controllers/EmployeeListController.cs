@@ -31,7 +31,7 @@ public class EmployeeController : Controller
             EmpId = e.Id,
             EmpName = e.Name,
             DeptId = e.Department!.Id,
-            DeptName = e.Department.Name,
+            DeptName = e.Department.Name ?? "未所属",
             PhoneNum = e.PhoneNum,
             EMail = e.EMail
         }).ToList();

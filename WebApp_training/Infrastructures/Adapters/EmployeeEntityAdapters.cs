@@ -44,7 +44,7 @@ IConverter<Employee, EmployeeEntity>, IRestorer<Employee, EmployeeEntity>
             target.EmpName,
             target.PhoneNum!,
             target.EMail!,
-            null
+            new Department(target.DeptId ?? 0)
 
         );
         return employee;

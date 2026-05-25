@@ -109,8 +109,4 @@ public class EmployeeRepository : IEmployeeRepository
         }
     }
 
-    List<Employee> IEmployeeRepository.FindAll()
-    {
-        throw new NotImplementedException();
-    }
 }
