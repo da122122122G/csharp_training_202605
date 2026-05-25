@@ -31,7 +31,7 @@ public class EmployeeRepositoryTests
 
         _context = new AppDbContext(options);
 
-        var path = Path.Combine(AppContext.BaseDirectory, "sql", "init.sql");
+        var path = Path.Combine(AppContext.BaseDirectory, "SQL", "init.sql");
         var sql = File.ReadAllText(path);
         _context.Database.ExecuteSqlRaw(sql);
 
