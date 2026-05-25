@@ -1,70 +1,104 @@
+
+using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using static Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 using WebApp_training.Applications.Domains;
-using WebApp_training.Exceptions;
 using WebApp_training.Infrastructures.Adapters;
 using WebApp_training.Infrastructures.Context;
-using WebApp_training.Infrastructures.Entities;
 using WebApp_training.Infrastructures.Repositories;
 
+namespace WebApp_training.Test.Infrastructures.Repositories;
 
-namespace WebApp_training.TestProdect;
-
+[DoNotParallelize]
 [TestClass]
-public sealed class EmployeeRepositoryTests
+public class EmployeeRepositoryTests
 {
-    [TestMethod]
-    public void Create_Employee_AddsEntitiesAndSavesTwice()
+    private const string ConnectionString =
+        "Host=localhost;Port=5432;Database=cs_db_202605;Username=postgres;Password=training;";
+
+    private EmployeeRepository _repository = null!;
+    private AppDbContext _context = null!;
+
+    [TestInitialize]
+    public void Setup()
     {
-        using var context = CreateContext(Array.Empty<EmployeeEntity>());
-        var repository = CreateRepository(context);
-        var employee = new Employee(1, "Laptop", "070-1234-5678", "a@b", null);
+        var employeeAdapter = new EmployeeEntityAdapter();
+        var departmentAdapter = new DepartmentEntityAdapter();
 
-        repository.Create(employee);
+        var options = new DbContextOptionsBuilder<AppDbContext>()
+            .UseNpgsql(ConnectionString)
+            .Options;
 
-        var savedItems = ((QueryableDbSet<EmployeeEntity>)context.Employees).Entities;
-        Assert.AreEqual(1, savedItems.Count);
-        var savedItem = savedItems[0];
-        Assert.AreEqual(1, savedItem.EmpId);
-        Assert.AreEqual("Laptop", savedItem.EmpName);
-        Assert.AreEqual("070-1234-5678", savedItem.PhoneNum);
-        Assert.AreEqual("a@b", savedItem.EMail);
+        _context = new AppDbContext(options);
 
+        var path = Path.Combine(AppContext.BaseDirectory, "sql", "init.sql");
+        var sql = File.ReadAllText(path);
+        _context.Database.ExecuteSqlRaw(sql);
+
+        _repository = new EmployeeRepository(_context, employeeAdapter);
     }
 
 
     [TestMethod]
-    public void Create_WhenDbSetThrows_WrapsExceptionInInternalException()
+    public void FindById_WhenIdCorrect()
     {
-        using var context = CreateContext(new ThrowingDbSet<EmployeeEntity>());
-        var repository = CreateRepository(context);
+        var actual = _repository.FindById(1);
 
-        var exception = Assert.ThrowsException<InternalException>(
-            () => repository.Create(new Employee(1, "Laptop", "070-1234-5678", "a@b", null)));
-
-        Assert.IsInstanceOfType<InvalidOperationException>(exception.InnerException);
+        IsNotNull(actual);
+        AreEqual(1, actual.Id);
+        AreEqual("田中太郎", actual.Name);
+        AreEqual(2, actual.Department!.Id);
+        AreEqual("012-3456-7890", actual.PhoneNum);
+        AreEqual("afdbv@awerv", actual.EMail);
     }
 
-    private static EmployeeRepository CreateRepository(AppDbContext context)
+    [TestMethod]
+    public void FindById_WhenIdNotFound()
     {
-        return new EmployeeRepository(context, new EmployeeEntityAdapter());
+        var actual = _repository.FindById(999);
+        IsNull(actual);
     }
 
-    private static AppDbContext CreateContext(IEnumerable<EmployeeEntity> employees)
+    [TestMethod]
+    public void Create_WhenCorrect()
     {
-        return CreateContext(new QueryableDbSet<EmployeeEntity>(employees));
+        var beforeCount = _context.Employees.Count();
+
+        var department = new Department(2, "総務部");
+        var employee = new Employee(4, "検証用氏名", "345-6789-0123", "natrfk@katsmr", department);
+        employee.ChangeDepartment(department);
+
+        _repository.Create(employee);
+
+        var afterCount = _context.Employees.Count();
+        AreEqual(beforeCount + 1, afterCount);
+
+        var created = _context.Employees
+            .Include(i => i.DeptId)
+            .FirstOrDefault(i => i.EmpName == "検証用氏名");
+
+        IsNotNull(created);
+        IsNotNull(created.DeptId);
+        AreEqual(null, created.DeptId);
     }
 
-    private static AppDbContext CreateContext(DbSet<EmployeeEntity> dbSet)
+    [TestMethod]
+    public void FindByName_WhenIdCorrect()
     {
-        // プロジェクトの設定に合わせて AppDbContext をインスタンス化してください
-        // （DbContextOptions が必要な場合は適宜 new して渡します）
-        var context = new AppDbContext(); 
-        
-        // 生成したコンテキストの Employees に DbSet をセットする
-        context.Employees = dbSet;
-        
-        return context;
+        var actual = _repository.FindByName("田中");
+
+        IsNotNull(actual);
+        AreEqual(1, actual.Id);
+        AreEqual("田中太郎", actual.Name);
+        AreEqual(2, actual.Department!.Id);
+        AreEqual("012-3456-7890", actual.PhoneNum);
+        AreEqual("afdbv@awerv", actual.EMail);
     }
 
-
+    [TestMethod]
+    public void FindByName_WhenIdNotFound()
+    {
+        var actual = _repository.FindByName("田中");
+        IsNull(actual);
+    }
 }

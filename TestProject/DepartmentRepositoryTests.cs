@@ -1,130 +1,102 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using static Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 using WebApp_training.Applications.Domains;
-using WebApp_training.Exceptions;
 using WebApp_training.Infrastructures.Adapters;
 using WebApp_training.Infrastructures.Context;
-using WebApp_training.Infrastructures.Entities;
 using WebApp_training.Infrastructures.Repositories;
 
+namespace WebApp_training.Test.Infrastructures.Repositories;
 
-namespace WebApp_training.TestProdect;
-
+[DoNotParallelize]
 [TestClass]
-public sealed class DepartmentRepositoryTests
+public class DepartmentRepositoryTests
 {
-    [TestMethod]
-    public void FindAll_ReturnsAllDepartment()
+    private const string ConnectionString =
+        "Host=localhost;Port=5432;Database=cs_db_202605;Username=postgres;Password=training;";
+
+    private DepartmentRepository _repository = null!;
+    private AppDbContext _context = null!;
+
+    [TestInitialize]
+    public void Setup()
     {
-        using var context = CreateContext(
-        [
-            new DepartmentEntity { DeptId = 1, DeptName = "未所属" },
-            new DepartmentEntity { DeptId = 2, DeptName = "総務部" },
-        ]);
-        var repository = CreateRepository(context);
+        var adapter = new DepartmentEntityAdapter();
 
-        var departments = repository.FindAll();
+        var options = new DbContextOptionsBuilder<AppDbContext>()
+            .UseNpgsql(ConnectionString)
+            .Options;
 
-        Assert.AreEqual(2, departments.Count);
-        AssertDepartment(departments[0], 1, "未所属");
-        AssertDepartment(departments[1], 2, "総務部");
+        _context = new AppDbContext(options);
+
+        var path = Path.Combine(AppContext.BaseDirectory, "sql", "init.sql");
+        var sql = File.ReadAllText(path);
+        _context.Database.ExecuteSqlRaw(sql);
+
+        _repository = new DepartmentRepository(_context, adapter);
     }
 
     [TestMethod]
-    public void FindById_WhenDepartmentExists_ReturnsDepartment()
+    public void FindAll_Result()
     {
-        using var context = CreateContext(
-        [
-            new DepartmentEntity { DeptId = 1, DeptName = "未所属" },
-            new DepartmentEntity { DeptId = 2, DeptName = "総務部" },
-        ]);
-        var repository = CreateRepository(context);
+        var actual = _repository.FindAll();
 
-        var department = repository.FindById(2);
-
-        Assert.IsNotNull(department);
-        AssertDepartment(department, 2, "総務部");
+        AreEqual(3, actual.Count);
+        IsTrue(actual.Any(d => d.Equals(new Department(1, "未所属"))));
+        IsTrue(actual.Any(d => d.Equals(new Department(2, "総務部"))));
+        IsTrue(actual.Any(d => d.Equals(new Department(3, "経理部"))));
     }
 
     [TestMethod]
-    public void FindById_WhenDepartmentDoesNotExist_ReturnsNull()
+    public void FindById_WhenIdCorrect()
     {
-        using var context = CreateContext(
-        [
-            new DepartmentEntity { DeptId = 1, DeptName = "未所属" },
-        ]);
-        var repository = CreateRepository(context);
+        var expected = new Department(2, "総務部");
+        var actual = _repository.FindById(2);
 
-        var department = repository.FindById(10);
-
-        Assert.IsNull(department);
+        AreEqual(expected, actual);
+        AreEqual("総務部", actual?.Name);
     }
 
     [TestMethod]
-    public void FindAll_WhenDbSetThrows_WrapsExceptionInInternalException()
+    public void FindById_WhenIdNotFound()
     {
-        using var context = CreateContext(new ThrowingDbSet<DepartmentEntity>());
-        var repository = CreateRepository(context);
-
-        var exception = Assert.ThrowsException<InternalException>(() => repository.FindAll());
-
-        Assert.IsInstanceOfType<InvalidOperationException>(exception.InnerException);
-    }
-
-    private static DepartmentRepository CreateRepository(AppDbContext context)
-    {
-        return new DepartmentRepository(context, new DepartmentEntityAdapter());
-    }
-
-    private static AppDbContext CreateContext(IEnumerable<DepartmentEntity> entities)
-    {
-        return CreateContext(new QueryableDbSet<DepartmentEntity>(entities));
-    }
-
-    private static AppDbContext CreateContext(DbSet<DepartmentEntity> departments)
-    {
-        var options = new DbContextOptionsBuilder<AppDbContext>().Options;
-        return new AppDbContext(options)
-        {
-            Departments = departments,
-        };
-    }
-
-    private static void AssertDepartment(Department department, int id, string name)
-    {
-        Assert.AreEqual(id, department.Id);
-        Assert.AreEqual(name, department.Name);
+        var actual = _repository.FindById(999);
+        IsNull(actual);
     }
 
     [TestMethod]
-    public void ExistsByName_WhenDepartmentExists_ReturnsBool()
+    public void Create_WhenCorrect()
     {
-        using var context = CreateContext(
-        [
-            new DepartmentEntity { DeptId = 1, DeptName = "未所属" },
-            new DepartmentEntity { DeptId = 2, DeptName = "総務部" },
-        ]);
-        var repository = CreateRepository(context);
+        var beforeCount = _context.Departments.Count();
 
-        var department = repository.ExistsByName("未所属");
+        var department = new Department(4, "人事部");
 
-        Assert.IsNotNull(department);
-        Assert.IsTrue(department);
+        _repository.Create(department);
+
+        var afterCount = _context.Employees.Count();
+        AreEqual(beforeCount + 1, afterCount);
+
+        var created = _context.Departments
+            .Include(i => i.DeptId)
+            .FirstOrDefault(i => i.DeptName == "人事部");
+
+        IsNotNull(created);
+        IsNotNull(created.DeptId);
+        AreEqual("人事部", created.DeptName);
     }
 
     [TestMethod]
-    public void ExistsByName_WhenDepartmentDoesntExists_ReturnsBool()
+    public void ExistsByName_WhenNameExists()
     {
-        using var context = CreateContext(
-        [
-            new DepartmentEntity { DeptId = 1, DeptName = "未所属" },
-            new DepartmentEntity { DeptId = 2, DeptName = "総務部" },
-        ]);
-        var repository = CreateRepository(context);
-
-        var department = repository.ExistsByName("帰宅部");
-
-        Assert.IsNotNull(department);
-        Assert.IsFalse(department);
+        var actual = _repository.ExistsByName("総務部");
+        IsTrue(actual);
     }
+
+    [TestMethod]
+    public void ExistsByName_WhenNameNotExists()
+    {
+        var actual = _repository.ExistsByName("帰宅部");
+        IsFalse(actual);
+    }
+
 }
