@@ -10,7 +10,7 @@ using WebApp_training.Applications.Domains;
 
 namespace WebApp_training.Presentations.ViewModels
 {
-    public class EmployeeListViewModelAdapter
+    public class EmployeeListItemViewModelAdapter
     {
         public List<EmployeeEntity> Restore(EmployeeListItemViewModel target)
         {

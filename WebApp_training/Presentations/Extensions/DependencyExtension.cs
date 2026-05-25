@@ -97,5 +97,13 @@ public static class DependencyExtension
             provider =>
             new TempDataStore<DepartmentRegisterViewModel>("DepartmentRegisterViewModel")
         );
+
+        services.AddScoped<EmployeeListItemViewModelAdapter>();
+
+        services.AddScoped<EmployeeListItemViewModelAdapter>();
+        services.AddScoped(
+            provider =>
+            new TempDataStore<EmployeeListItemViewModel>("EmployeeListItemViewModel")
+            );
     }
 }

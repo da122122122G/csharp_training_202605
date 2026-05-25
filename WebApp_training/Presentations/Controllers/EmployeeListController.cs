@@ -26,7 +26,7 @@ public class EmployeeController : Controller
         var employees = _employeeService.FindAll();
 
 
-        var viewModels = employees.Select(e => new EmployeeListItemViewModel
+        var model = employees.Select(e => new EmployeeListItemViewModel
         {
             EmpId = e.Id,
             EmpName = e.Name,
@@ -37,7 +37,7 @@ public class EmployeeController : Controller
         }).ToList();
 
 
-        return View(viewModels);
+        return View(model);
     }
 
     [HttpPost("Back")]
