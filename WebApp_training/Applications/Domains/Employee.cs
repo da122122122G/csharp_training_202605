@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebApp_training.Exceptions;
+using WebApp_training.Infrastructures.Entities;
 
 namespace WebApp_training.Applications.Domains
 {
@@ -17,12 +18,11 @@ namespace WebApp_training.Applications.Domains
 
         private const int MaxLength = 20;
 
-
         public Employee(int id, string name, string phoneNum, string eMail, Department? department)
         {
             ValidateName(name);
-            Id = id;
-            Name = name;
+            Id = id!;
+            Name = name!;
             PhoneNum = phoneNum;
             EMail = eMail;
             Department = department;

@@ -1,0 +1,4 @@
+TRUNCATE TABLE
+    employee,
+    department
+RESTART IDENTITY CASCADE;

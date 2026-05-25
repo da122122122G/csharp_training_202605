@@ -30,4 +30,10 @@
     </None>
   </ItemGroup>
 
+    <ItemGroup>
+    <None Update="SQL\notFound.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
