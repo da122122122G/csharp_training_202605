@@ -72,7 +72,7 @@ public class DepartmentRepositoryTests
     {
         var beforeCount = _context.Departments.Count();
 
-        var department = new Department("人事部");
+        var department = new Department(2, "人事部");
 
         _repository.Create(department);
 
