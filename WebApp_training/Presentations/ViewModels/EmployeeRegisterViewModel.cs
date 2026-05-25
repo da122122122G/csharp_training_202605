@@ -46,13 +46,12 @@ public class EmployeeRegisterViewModel
         var selectItems = new List<SelectListItem>();
         foreach (var dept in departments)
         {
-            if (dept.Id.HasValue)
-            {
-                var item = new SelectListItem();
-                item.Value = dept.Id.Value.ToString();
-                item.Text = string.IsNullOrEmpty(dept.Name) ? "(名称未設定)" : dept.Name;
-                selectItems.Add(item);
-            }
+
+            var item = new SelectListItem();
+            item.Value = dept.Id.ToString();
+            item.Text = string.IsNullOrEmpty(dept.Name) ? "(名称未設定)" : dept.Name;
+            selectItems.Add(item);
+
         }
         Departments = selectItems;
     }

@@ -19,11 +19,9 @@ IConverter<Department, DepartmentEntity>, IRestorer<Department, DepartmentEntity
         {
             DeptName = domain.Name!,
         };
-        if (domain.Id != null)
-        {
 
-            entity.DeptId = domain.Id.Value;
-        }
+        entity.DeptId = domain.Id;
+
         return entity;
     }
 

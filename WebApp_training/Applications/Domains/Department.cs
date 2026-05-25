@@ -9,12 +9,12 @@ namespace WebApp_training.Applications.Domains
     public class Department
     {
 
-        public int? Id { get; private set; }      // 部署Id
+        public int Id { get; private set; }      // 部署Id
         public string? Name { get; private set; } = string.Empty;    // 部署名
         private const int MaxLength = 20; // 部署名の長さ
 
 
-        public Department(int? id, string? name)
+        public Department(int id, string? name)
         {
             // 部署名のルール検証
             validateDepartmentName(name);
@@ -23,9 +23,7 @@ namespace WebApp_training.Applications.Domains
         }
 
 
-        public Department(string? name) : this(null, name) { }
-
-        public Department(int? id)
+        public Department(int id)
         {
             this.Id = id;
         }
@@ -57,8 +55,8 @@ namespace WebApp_training.Applications.Domains
             if (obj is not Department other) return false;
             return Id == other.Id;
         }
-        public override int GetHashCode() => Id?.GetHashCode() ?? 0;
+        public override int GetHashCode() => Id.GetHashCode();
 
-        public override string ToString() => $"{Id?.ToString() ?? "未登録"}: {Name}";
+        public override string ToString() => $"{Id.ToString() ?? "未登録"}: {Name}";
     }
 }

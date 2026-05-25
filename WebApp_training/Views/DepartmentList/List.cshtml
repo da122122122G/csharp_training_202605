@@ -1,0 +1,38 @@
+@using WebApp_training.Presentations.ViewModels
+
+@model IEnumerable<DepartmentListItemViewModel>
+
+@{
+    ViewData["Title"] = "部署一覧";
+}
+<h2 class="text-center mt-4">@ViewData["Title"]</h2>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10 col-sm-12 text-center">
+            <div class="alert alert-success" role="alert">
+                部署情報の読み込みが完了しました。
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>部署ID</th>
+                        <th>部署名</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var dept in Model)
+                    {
+                        <tr>
+                            <td>@dept.DeptId</td>
+                            <td>@dept.DeptName</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            @*メニューに戻る*@
+            <a asp-action="Index" asp-controller="Home" class="btn btn-secondary mt-3 ms-2">
+                メニューに戻る
+            </a>
+        </div>
+    </div>
+</div>
