@@ -14,12 +14,12 @@ public class EmployeeService : IEmployeeService
     private readonly IEmployeeRepository _repository;
 
     // コンストラクタでリポジトリをDI（依存性の注入）で受け取る
-    public EmployeeService(IEmployeeRepository repository)
+    public EmployeeService(IEmployeeRepository employeeRepository)
     {
-        _repository = repository;
+        _repository = employeeRepository;
     }
 
-    public IEnumerable<Employee> FindAll()
+    public List<Employee> FindAll()
     {
         // リポジトリに処理を委譲して全件取得する
         return _repository.FindAll();
