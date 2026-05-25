@@ -16,6 +16,9 @@ public class DepartmentRegisterViewModel
     [StringLength(20, ErrorMessage = "{1}文字以内で入力してください。")]
     public string? Name { get; set; } = string.Empty;
 
+    [Display(Name = "所属部署")]
+    public int? DeptId { get; set; } = 0;
+
 
     public List<SelectListItem>? Departments { get; set; } = null;
 
