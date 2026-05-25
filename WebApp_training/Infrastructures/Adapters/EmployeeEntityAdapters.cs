@@ -39,14 +39,15 @@ IConverter<Employee, EmployeeEntity>, IRestorer<Employee, EmployeeEntity>
 
     public Employee Restore(EmployeeEntity target)
     {
+        var deptName = target.Department?.DeptName ?? "未所属";
         var employee = new Employee(
             target.EmpId,
             target.EmpName,
             target.PhoneNum!,
             target.EMail!,
-            new Department(target.DeptId ?? 0)
-
+            new Department(target.DeptId ?? 0, deptName)
         );
+
         return employee;
     }
 }

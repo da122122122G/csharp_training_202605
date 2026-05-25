@@ -26,5 +26,7 @@ public class EmployeeEntity
     [Column("e_mail")]
     public string? EMail { get; set; } = string.Empty;
 
+    [ForeignKey("DeptId")]
+    public virtual DepartmentEntity? Department { get; set; }
 
 }

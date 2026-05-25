@@ -9,12 +9,12 @@ using WebApp_training.Presentations.ViewModels;
 namespace WebApp_training.Presentations.Controllers;
 
 [Route("EmployeeList")]
-public class EmployeeController : Controller
+public class EmployeeListController : Controller
 {
     private readonly IEmployeeService _employeeService;
 
 
-    public EmployeeController(IEmployeeService employeeService)
+    public EmployeeListController(IEmployeeService employeeService)
     {
         _employeeService = employeeService;
     }

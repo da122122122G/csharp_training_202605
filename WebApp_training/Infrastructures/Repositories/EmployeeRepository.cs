@@ -94,7 +94,9 @@ public class EmployeeRepository : IEmployeeRepository
     {
         try
         {
-            var entities = _context.Employees.ToList();
+            var entities = _context.Employees
+            .Include(e => e.Department)
+            .ToList();
             var results = new List<Employee>();
             foreach (var entity in entities)
             {
