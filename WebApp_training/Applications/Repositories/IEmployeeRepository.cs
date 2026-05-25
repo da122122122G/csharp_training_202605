@@ -11,4 +11,8 @@ public interface IEmployeeRepository
     void Create(Employee employee);
     List<Employee> FindAll();
 
+    void Delete(Employee employee);
+    void Update(Employee employee);
+    Employee? FindById(int id);
+    Employee? FindByName(string name);
 }

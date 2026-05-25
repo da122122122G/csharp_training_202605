@@ -73,6 +73,8 @@ public static class DependencyExtension
         services.AddScoped<IDepartmentRegisterService, DepartmentRegisterService>();
         services.AddScoped<IEmployeeService, EmployeeService>();
         services.AddScoped<IDepartmentService, DepartmentService>();
+        services.AddScoped<IEmployeeDeleteService, EmployeeDeleteService>();
+        services.AddScoped<IDepartmentDeleteService, DepartmentDeleteService>();
     }
 
     /// <summary>
@@ -112,6 +114,18 @@ public static class DependencyExtension
         services.AddScoped(
             provider =>
             new TempDataStore<DepartmentListItemViewModel>("DepartmentListItemViewModel")
+            );
+
+        services.AddScoped<EmployeeDeleteViewModelAdapter>();
+        services.AddScoped(
+            provider =>
+            new TempDataStore<EmployeeDeleteViewModel>("EmployeeDeleteViewModel")
+            );
+
+        services.AddScoped<DepartmentDeleteViewModelAdapter>();
+        services.AddScoped(
+            provider =>
+            new TempDataStore<DepartmentDeleteViewModel>("DepartmentDeleteViewModel")
             );
     }
 }

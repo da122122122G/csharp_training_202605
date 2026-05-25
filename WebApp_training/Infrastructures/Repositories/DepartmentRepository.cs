@@ -99,4 +99,34 @@ public class DepartmentRepository : IDepartmentRepository
                 "従業員の永続化ができませんでした。", e);
         }
     }
+
+    public void Delete(Department department)
+    {
+        try
+        {
+            var entity = _adapter.Convert(department);
+            _context.Departments.Remove(entity);
+            _context.SaveChanges();
+        }
+        catch (Exception e)
+        {
+            throw new InternalException(
+                "従業員の永続化ができませんでした。", e);
+        }
+    }
+
+    public void Update(Department department)
+    {
+        try
+        {
+            var entity = _adapter.Convert(department);
+            _context.Departments.Update(entity);
+            _context.SaveChanges();
+        }
+        catch (Exception e)
+        {
+            throw new InternalException(
+                "従業員の永続化ができませんでした。", e);
+        }
+    }
 }

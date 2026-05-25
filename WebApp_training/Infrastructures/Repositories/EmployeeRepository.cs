@@ -53,6 +53,57 @@ public class EmployeeRepository : IEmployeeRepository
         }
     }
 
+    public List<Employee> FindAll()
+    {
+        try
+        {
+            var entities = _context.Employees
+            .Include(e => e.Department)
+            .ToList();
+            var results = new List<Employee>();
+            foreach (var entity in entities)
+            {
+                results.Add(_adapter.Restore(entity));
+            }
+            return results;
+        }
+        catch (Exception e)
+        {
+            throw new InternalException(
+                "従業員一覧を取得できませんでした。", e);
+        }
+    }
+
+    public void Delete(Employee employee)
+    {
+        try
+        {
+            var entity = _adapter.Convert(employee);
+            _context.Employees.Remove(entity);
+            _context.SaveChanges();
+        }
+        catch (Exception e)
+        {
+            throw new InternalException(
+                "従業員の永続化ができませんでした。", e);
+        }
+    }
+
+    public void Update(Employee employee)
+    {
+        try
+        {
+            var entity = _adapter.Convert(employee);
+            _context.Employees.Update(entity);
+            _context.SaveChanges();
+        }
+        catch (Exception e)
+        {
+            throw new InternalException(
+                "従業員の永続化ができませんでした。", e);
+        }
+    }
+
     public Employee? FindById(int id)
     {
         try
@@ -87,27 +138,6 @@ public class EmployeeRepository : IEmployeeRepository
         {
             throw new InternalException(
                 "指定された名前を含む社員を取得できませんでした。", e);
-        }
-    }
-
-    public List<Employee> FindAll()
-    {
-        try
-        {
-            var entities = _context.Employees
-            .Include(e => e.Department)
-            .ToList();
-            var results = new List<Employee>();
-            foreach (var entity in entities)
-            {
-                results.Add(_adapter.Restore(entity));
-            }
-            return results;
-        }
-        catch (Exception e)
-        {
-            throw new InternalException(
-                "従業員一覧を取得できませんでした。", e);
         }
     }
 

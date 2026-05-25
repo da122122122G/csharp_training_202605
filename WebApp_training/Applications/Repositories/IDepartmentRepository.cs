@@ -12,4 +12,6 @@ public interface IDepartmentRepository
     Department? FindById(int id);
     bool ExistsByName(string name);
     void Create(Department department);
+    void Update(Department department);
+    void Delete(Department department);
 }

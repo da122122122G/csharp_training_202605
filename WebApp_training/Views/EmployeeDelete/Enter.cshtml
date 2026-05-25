@@ -1,0 +1,29 @@
+@* クラスの名前空間を指定する(C#と同じ) *@
+@using WebApp_training.Presentations.ViewModels
+@* View が受け取るデータ型（ViewModel）を宣言asp-for はこの型のプロパティと結びつける *@
+@model EmployeeDeleteViewModel;
+@{
+    ViewData["Title"] = "従業員削除";
+}
+<h2 class="text-center mt-4">@ViewData["Title"]</h2>
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-4 col-sm-6">
+            @* 送信先はControllerのConfirm()、POSTは入力値を送信する*@
+            <form asp-action="Confirm" asp-controller="EmployeeDelete" method="post">
+
+                <div class="mb-3">
+                    @* Tag HelperがId属性やid属性を自動生成 Model Bindingに必要なHTMLが作成される*@
+                    <label asp-for="Id" class="form-label"></label>
+                    <input asp-for="Id" class="form-control" />
+                    @*バリデーション(ModelState)エラーを表示する*@
+                    <span asp-validation-for="Id" class="text-danger"></span>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">確認画面へ</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
