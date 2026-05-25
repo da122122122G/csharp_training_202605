@@ -41,10 +41,13 @@ public class DepartmentRepositoryTests
     {
         var actual = _repository.FindAll();
 
-        AreEqual(3, actual.Count);
+        AreEqual(6, actual.Count);
         IsTrue(actual.Any(d => d.Equals(new Department(1, "未所属"))));
         IsTrue(actual.Any(d => d.Equals(new Department(2, "総務部"))));
         IsTrue(actual.Any(d => d.Equals(new Department(3, "経理部"))));
+        IsTrue(actual.Any(d => d.Equals(new Department(4, "人事部"))));
+        IsTrue(actual.Any(d => d.Equals(new Department(5, "開発部"))));
+        IsTrue(actual.Any(d => d.Equals(new Department(6, "営業部"))));
     }
 
     [TestMethod]
@@ -69,15 +72,14 @@ public class DepartmentRepositoryTests
     {
         var beforeCount = _context.Departments.Count();
 
-        var department = new Department(4, "人事部");
+        var department = new Department("人事部");
 
         _repository.Create(department);
 
-        var afterCount = _context.Employees.Count();
+        var afterCount = _context.Departments.Count();
         AreEqual(beforeCount + 1, afterCount);
 
         var created = _context.Departments
-            .Include(i => i.DeptId)
             .FirstOrDefault(i => i.DeptName == "人事部");
 
         IsNotNull(created);

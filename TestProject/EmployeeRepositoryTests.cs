@@ -65,7 +65,7 @@ public class EmployeeRepositoryTests
         var beforeCount = _context.Employees.Count();
 
         var department = new Department(2, "総務部");
-        var employee = new Employee(4, "検証用氏名", "345-6789-0123", "natrfk@katsmr", department);
+        var employee = new Employee(0, "検証用氏名", "345-6789-0123", "natrfk@katsmr", department);
         employee.ChangeDepartment(department);
 
         _repository.Create(employee);
@@ -74,16 +74,14 @@ public class EmployeeRepositoryTests
         AreEqual(beforeCount + 1, afterCount);
 
         var created = _context.Employees
-            .Include(i => i.DeptId)
             .FirstOrDefault(i => i.EmpName == "検証用氏名");
 
         IsNotNull(created);
         IsNotNull(created.DeptId);
-        AreEqual(null, created.DeptId);
     }
 
     [TestMethod]
-    public void FindByName_WhenIdCorrect()
+    public void FindByName_WhenNameCorrect()
     {
         var actual = _repository.FindByName("田中");
 
@@ -96,9 +94,9 @@ public class EmployeeRepositoryTests
     }
 
     [TestMethod]
-    public void FindByName_WhenIdNotFound()
+    public void FindByName_WhenNameNotFound()
     {
-        var actual = _repository.FindByName("田中");
+        var actual = _repository.FindByName("四月朔日");
         IsNull(actual);
     }
 }
