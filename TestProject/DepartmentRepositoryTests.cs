@@ -72,7 +72,7 @@ public class DepartmentRepositoryTests
     {
         var beforeCount = _context.Departments.Count();
 
-        var department = new Department(2, "人事部");
+        var department = new Department(7, "エンジニア部");
 
         _repository.Create(department);
 
@@ -80,11 +80,11 @@ public class DepartmentRepositoryTests
         AreEqual(beforeCount + 1, afterCount);
 
         var created = _context.Departments
-            .FirstOrDefault(i => i.DeptName == "人事部");
+            .FirstOrDefault(i => i.DeptName == "エンジニア部");
 
         IsNotNull(created);
         IsNotNull(created.DeptId);
-        AreEqual("人事部", created.DeptName);
+        AreEqual("エンジニア部", created.DeptName);
     }
 
     [TestMethod]
