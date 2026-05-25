@@ -18,10 +18,9 @@ IConverter<Employee, EmployeeEntity>, IRestorer<Employee, EmployeeEntity>
         {
             EmpName = domain.Name
         };
-        if (domain.Id != null)
-        {
-            entity.EmpId = domain.Id.Value;
-        }
+
+        entity.EmpId = domain.Id;
+
         if (domain.Department != null)
         {
             entity.DeptId = domain.Department.Id;

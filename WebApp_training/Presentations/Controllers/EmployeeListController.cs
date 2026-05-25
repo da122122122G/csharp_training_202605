@@ -13,7 +13,7 @@ public class EmployeeController : Controller
 {
     private readonly IEmployeeService _employeeService;
 
-    
+
     public EmployeeController(IEmployeeService employeeService)
     {
         _employeeService = employeeService;
@@ -22,21 +22,21 @@ public class EmployeeController : Controller
     [HttpGet("List")]
     public IActionResult List()
     {
-        
-        var employees = _employeeService.FindAll(); 
 
-        
+        var employees = _employeeService.FindAll();
+
+
         var viewModels = employees.Select(e => new EmployeeListItemViewModel
         {
-            EmpId = e.EmpId,
-            EmpName = e.EmpName,
-            DeptId = e.DeptId,
-            DeptName = e.Department?.DeptName, 
+            EmpId = e.Id,
+            EmpName = e.Name,
+            DeptId = e.Department!.Id,
+            DeptName = e.Department.Name,
             PhoneNum = e.PhoneNum,
             EMail = e.EMail
         }).ToList();
 
-        
+
         return View(viewModels);
     }
 }

@@ -8,7 +8,7 @@ namespace WebApp_training.Applications.Domains
 {
     public class Employee
     {
-        public int? Id { get; private set; } // 社員Id
+        public int Id { get; private set; } // 社員Id
 
         public string Name { get; private set; } = string.Empty;// 氏名
         public string PhoneNum { get; private set; } = string.Empty;
@@ -18,7 +18,7 @@ namespace WebApp_training.Applications.Domains
         private const int MaxLength = 20;
 
 
-        public Employee(int? id, string name, string phoneNum, string eMail, Department? department)
+        public Employee(int id, string name, string phoneNum, string eMail, Department? department)
         {
             ValidateName(name);
             Id = id;
@@ -29,8 +29,6 @@ namespace WebApp_training.Applications.Domains
         }
 
 
-        public Employee(string name, string phoneNum, string eMail, Department? department)
-            : this(null, name, phoneNum, eMail, department) { }
 
         private void ValidateName(string name)
         {
@@ -71,9 +69,9 @@ namespace WebApp_training.Applications.Domains
             return Id == other.Id;
         }
 
-        public override int GetHashCode() => Id?.GetHashCode() ?? 0;
+        public override int GetHashCode() => Id.GetHashCode();
 
         public override string ToString()
-            => $"{Id?.ToString() ?? "未登録"}: {Name} / {Department?.Name ?? "未配属"}";
+            => $"{Id.ToString() ?? "未登録"}: {Name} / {Department?.Name ?? "未配属"}";
     }
 }

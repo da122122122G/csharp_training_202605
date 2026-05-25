@@ -11,6 +11,10 @@ namespace WebApp_training.Presentations.ViewModels;
 public class EmployeeRegisterViewModel
 {
 
+    [Display(Name = "社員番号")]
+    [Required(ErrorMessage = "{0}は必須です")]
+    public int Id { get; set; } = 0;
+
     [Display(Name = "氏名")]
     [Required(ErrorMessage = "{0}は入力必須です。")]
     [StringLength(50, ErrorMessage = "{1}文字以内で入力してください。")]
