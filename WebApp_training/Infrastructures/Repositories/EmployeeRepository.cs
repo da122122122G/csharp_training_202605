@@ -155,6 +155,7 @@ public class EmployeeRepository : IEmployeeRepository
     public List<Employee> GetEmpsByDeptId(int deptId)
     {
         var entities = _context.Employees
+            .Include(e => e.Department)
             .AsNoTracking()
             .Where(e => e.DeptId == deptId)
             .ToList();
@@ -164,7 +165,7 @@ public class EmployeeRepository : IEmployeeRepository
             entity.EmpName,
             entity.PhoneNum ?? string.Empty,
             entity.EMail ?? string.Empty,
-            entity.DeptId.HasValue ? new Department(entity.DeptId.Value, "") : null
+            entity.Department != null ? new Department(entity.Department.DeptId, entity.Department.DeptName) : null
         )).ToList();
     }
 }

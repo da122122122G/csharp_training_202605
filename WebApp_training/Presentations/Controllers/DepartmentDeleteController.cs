@@ -107,6 +107,7 @@ public class DepartmentDeleteController : Controller
         //viewModel.HasRelatedEmployees = hasEmployees;
 
         _logger.LogInformation($"部署Id:{viewModel.DeptId} の削除確認画面を表示します。");
+        viewModel.Name = department.Name;
 
         return View(viewModel);
     }
@@ -143,7 +144,8 @@ public class DepartmentDeleteController : Controller
         catch (Exception ex)
         {
             _logger.LogError(ex, "部署の削除処理中にエラーが発生しました。");
-            ModelState.AddModelError(string.Empty, "削除処理に失敗しました。");
+            string errorMessage = $"{ex.Message} 【発生場所】: {ex.StackTrace}";
+            ModelState.AddModelError(string.Empty, $"エラー詳細: {errorMessage}");
             return View("Confirm", viewModel);
         }
     }

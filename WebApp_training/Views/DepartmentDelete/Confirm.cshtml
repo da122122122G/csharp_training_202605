@@ -10,18 +10,13 @@
             <table class="table table-hover">
                 <tbody>
                     <tr>
-                        @*DepartmentDeleteViewModelのDeptIdプロパティの値を表示する*@
-                        <td class="fw-bold">@Html.DisplayNameFor(m => m.DeptId)</td>
-                        <td>@Html.DisplayFor(m => m.DeptId)</td>
-                    </tr>
-                    <tr>
                         @*DepartmentDeleteViewModelのDeptNameプロパティの値を表示する*@
                         <td class="fw-bold">@Html.DisplayNameFor(m => m.Name)</td>
                         <td>@Html.DisplayFor(m => m.Name)</td>
                     </tr>
                 </tbody>
             </table>
-
+            <div asp-validation-summary="All" class="text-danger"></div>
             <form>
                 @*POSTリクエスト(Delete/Back)に値を渡すためにhidden属性を使う*@
                 @*これがないと、次の画面で値が消えてしまう*@

@@ -111,4 +111,65 @@ public class EmployeeRepositoryTests
 
     }
 
+    [TestMethod]
+    public void ExistsById_WhenIdExists()
+    {
+        var actual = _repository.ExistsById(2);
+        IsTrue(actual);
+    }
+
+    [TestMethod]
+    public void ExistsById_WhenIdNotExists()
+    {
+        var actual = _repository.ExistsById(999);
+        IsFalse(actual);
+    }
+
+    [TestMethod]
+    public void Delete_WhenCorrect()
+    {
+        var beforeCount = _context.Employees.Count();
+
+        var department = new Department(2, "総務部");
+        var employee = new Employee(1, "検証用氏名", "345-6789-0123", "natrfk@katsmr", department);
+        employee.ChangeDepartment(department);
+
+        _repository.Delete(employee);
+
+        var afterCount = _context.Employees.Count();
+        AreEqual(beforeCount - 1, afterCount);
+
+        var deleated = _context.Employees
+            .FirstOrDefault(i => i.EmpName == "検証用氏名");
+
+        IsNull(deleated);
+    }
+
+    [TestMethod]
+    public void Update_WhenCorrect()
+    {
+        var beforeCount = _context.Employees.Count();
+        int targetEmpId = 3;
+        var newDepartment = new Department(2, "総務部");
+        var employeeToUpdate = new Employee(
+            targetEmpId,
+            "変更後の検証用氏名",
+            "345-6789-0123",
+            "natrfk@katsmr",
+            newDepartment
+        );
+
+        _repository.Update(employeeToUpdate);
+
+        var afterCount = _context.Employees.Count();
+        AreEqual(beforeCount, afterCount);
+
+        var updatedEntity = _context.Employees
+            .FirstOrDefault(i => i.EmpId == targetEmpId);
+
+        IsNotNull(updatedEntity);
+        AreEqual("変更後の検証用氏名", updatedEntity.EmpName);
+        AreEqual(2, updatedEntity.DeptId);
+    }
+
 }
