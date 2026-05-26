@@ -112,6 +112,16 @@ public class EmployeeRepositoryTests
     }
 
     [TestMethod]
+    public void GetEmpsByDeptId_Result()
+    {
+        var actual = _repository.GetEmpsByDeptId(2);
+
+        AreEqual(1, actual.Count);
+        IsTrue(actual.Any(d => d.Equals(new Employee(1, "田中太郎", "012-3456-7890", "afdbv@awerv", null))));
+
+    }
+
+    [TestMethod]
     public void ExistsById_WhenIdExists()
     {
         var actual = _repository.ExistsById(2);

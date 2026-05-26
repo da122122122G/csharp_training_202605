@@ -101,4 +101,43 @@ public class DepartmentRepositoryTests
         IsFalse(actual);
     }
 
+    [TestMethod]
+    public void Delete_WhenCorrect()
+    {
+        var beforeCount = _context.Departments.Count();
+
+        var department = new Department(2, "総務部");
+
+        _repository.Delete(department);
+
+        var afterCount = _context.Departments.Count();
+        AreEqual(beforeCount - 1, afterCount);
+
+        var deleated = _context.Departments
+            .FirstOrDefault(i => i.DeptName == "総務部");
+
+        IsNull(deleated);
+    }
+
+    [TestMethod]
+    public void Update_WhenCorrect()
+    {
+        var beforeCount = _context.Departments.Count();
+        int targetDeptId = 3;
+        var newDepartment = new Department(2, "総務部");
+        var departmentToUpdate = new Department(targetDeptId, "変更後の検証用氏名");
+
+        _repository.Update(departmentToUpdate);
+
+        var afterCount = _context.Departments.Count();
+        AreEqual(beforeCount, afterCount);
+
+        var updatedEntity = _context.Departments
+            .FirstOrDefault(i => i.DeptId == targetDeptId);
+
+        IsNotNull(updatedEntity);
+        AreEqual("変更後の検証用氏名", updatedEntity.DeptName);
+        AreEqual(2, updatedEntity.DeptId);
+    }
+
 }
