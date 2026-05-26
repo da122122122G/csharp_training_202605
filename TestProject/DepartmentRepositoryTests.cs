@@ -51,6 +51,20 @@ public class DepartmentRepositoryTests
     }
 
     [TestMethod]
+    public void ExistsById_WhenIdExists()
+    {
+        var actual = _repository.ExistsById(2);
+        IsTrue(actual);
+    }
+
+    [TestMethod]
+    public void ExistsById_WhenIdNotExists()
+    {
+        var actual = _repository.ExistsById(999);
+        IsFalse(actual);
+    }
+
+    [TestMethod]
     public void FindById_WhenIdCorrect()
     {
         var expected = new Department(2, "総務部");
@@ -106,7 +120,7 @@ public class DepartmentRepositoryTests
     {
         var beforeCount = _context.Departments.Count();
 
-        var department = new Department(2, "総務部");
+        var department = new Department(6, "営業部");
 
         _repository.Delete(department);
 
@@ -114,7 +128,7 @@ public class DepartmentRepositoryTests
         AreEqual(beforeCount - 1, afterCount);
 
         var deleated = _context.Departments
-            .FirstOrDefault(i => i.DeptName == "総務部");
+            .FirstOrDefault(i => i.DeptName == "営業部");
 
         IsNull(deleated);
     }
@@ -137,7 +151,7 @@ public class DepartmentRepositoryTests
 
         IsNotNull(updatedEntity);
         AreEqual("変更後の検証用氏名", updatedEntity.DeptName);
-        AreEqual(2, updatedEntity.DeptId);
+        AreEqual(3, updatedEntity.DeptId);
     }
 
 }

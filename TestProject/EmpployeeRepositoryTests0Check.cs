@@ -10,18 +10,18 @@ namespace WebApp_training.Test.Infrastructures.Repositories;
 
 [DoNotParallelize]
 [TestClass]
-public class DepartmentRepositoryTests2
+public class EmployeeRepositoryTests0Check
 {
     private const string ConnectionString =
         "Host=localhost;Port=5432;Database=cs_db_202605;Username=postgres;Password=training;";
 
-    private DepartmentRepository _repository = null!;
+    private EmployeeRepository _repository = null!;
     private AppDbContext _context = null!;
 
     [TestInitialize]
     public void Setup()
     {
-        var adapter = new DepartmentEntityAdapter();
+        var adapter = new EmployeeEntityAdapter();
 
         var options = new DbContextOptionsBuilder<AppDbContext>()
             .UseNpgsql(ConnectionString)
@@ -33,7 +33,7 @@ public class DepartmentRepositoryTests2
         var sql = File.ReadAllText(path);
         _context.Database.ExecuteSqlRaw(sql);
 
-        _repository = new DepartmentRepository(_context, adapter);
+        _repository = new EmployeeRepository(_context, adapter);
     }
 
     [TestMethod]
