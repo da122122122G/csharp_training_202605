@@ -160,12 +160,6 @@ public class EmployeeRepository : IEmployeeRepository
             .Where(e => e.DeptId == deptId)
             .ToList();
 
-        return entities.Select(entity => new Employee(
-            entity.EmpId,
-            entity.EmpName,
-            entity.PhoneNum ?? string.Empty,
-            entity.EMail ?? string.Empty,
-            entity.Department != null ? new Department(entity.Department.DeptId, entity.Department.DeptName) : null
-        )).ToList();
+        return entities.Select(entity => _adapter.Restore(entity)).ToList();
     }
 }
