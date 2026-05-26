@@ -24,12 +24,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var emp in Model)
+                    @foreach (var emp in Model.OrderBy(e => e.EmpId))
                     {
                         <tr>
                             <td>@emp.EmpId</td>
                             <td>@emp.EmpName</td>
-                            <td>@emp.DeptId</td>
                             <td>@emp.DeptName</td>
                             <td>@emp.PhoneNum</td>
                             <td>@emp.EMail</td>
