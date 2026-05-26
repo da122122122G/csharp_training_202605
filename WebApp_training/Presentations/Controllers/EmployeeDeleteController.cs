@@ -62,6 +62,7 @@ public class EmployeeDeleteController : Controller
         {
             // 従業員登録ViewModelを生成する
             viewModel = new EmployeeDeleteViewModel();
+            viewModel.DeptId = 2;
         }
         // 部署一覧を取得してViewModelに設定する(SelectListItem形式)
         PopulateDepartments(viewModel);
@@ -77,20 +78,22 @@ public class EmployeeDeleteController : Controller
     [HttpPost("Confirm")]
     public IActionResult Confirm(EmployeeDeleteViewModel viewModel)
     {
-        // バリデーションチェック
-        if (!ModelState.IsValid) // バリデーションエラーあり
+        if (!ModelState.IsValid)
         {
-            // 部署一覧を取得してViewModelに設定する(SelectListItem形式)
             PopulateDepartments(viewModel);
-            // 入力画面の表示
             return View("Enter", viewModel);
         }
-        // 選択された部署のIdで部署データを取得する
         var department = _employeeDeleteService.FindById(viewModel.DeptId ?? 0);
         _logger.LogInformation($"部署Id:{viewModel.DeptId ?? 0}の部署を取得する");
-        // ViewModelに部署名を設定する
+
+        if (department == null)
+        {
+            ModelState.AddModelError(string.Empty, "選択された部署が存在しないか、既に削除されています。");
+
+            PopulateDepartments(viewModel);
+            return View("Enter", viewModel);
+        }
         viewModel.DeptName = department.Name;
-        // 確認画面を表示する
         return View(viewModel);
     }
 

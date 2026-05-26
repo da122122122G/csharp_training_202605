@@ -13,8 +13,8 @@ public class EmployeeDeleteViewModel
 
     [Display(Name = "社員番号")]
     [Required(ErrorMessage = "{0}は入力必須です。")]
-    [StringLength(20, ErrorMessage = "{99999}以下で入力してください。")]
-    public int EmpId { get; set; }
+    [Range(1, int.MaxValue, ErrorMessage = "{1}以上で入力してください。")]
+    public int EmpId { get; set; } = 1;
     [Display(Name = "氏名")]
     public string EmpName { get; set; } = string.Empty;
     [Display(Name = "部署ID")]

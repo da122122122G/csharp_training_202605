@@ -14,8 +14,10 @@ public class DepartmentDeleteViewModel
     [Display(Name = "部署名")]
     public string? Name { get; set; } = string.Empty;
 
-    [Display(Name = "所属部署")]
-    public int DeptId { get; set; } = 0;
+    [Display(Name = "部署")]
+    [Required(ErrorMessage = "{0}は入力必須です。")]
+    [Range(2, int.MaxValue, ErrorMessage = "{1}以上で入力してください。")]
+    public int DeptId { get; set; } = 2;
 
 
     public List<SelectListItem>? Departments { get; set; } = null;
