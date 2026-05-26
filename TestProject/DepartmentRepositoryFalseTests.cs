@@ -9,7 +9,7 @@ using WebApp_training.Infrastructures.Repositories;
 using WebApp_training.Exceptions;
 
 
-namespace TestProject;
+namespace WebApp_training.Test.Infrastructures.Repositories;
 
 [DoNotParallelize]
 [TestClass]
@@ -28,14 +28,9 @@ public class DepartmentRepositoryFalseTests
         var employeeAdapter = new DepartmentEntityAdapter();
 
         var options = new DbContextOptionsBuilder<AppDbContext>()
-            .UseNpgsql(ConnectionString)
             .Options;
 
         _context = new AppDbContext(options);
-
-        var path = Path.Combine(AppContext.BaseDirectory, "SQL", "init.sql");
-        var sql = File.ReadAllText(path);
-        _context.Database.ExecuteSqlRaw(sql);
 
         _repository = new DepartmentRepository(_context, employeeAdapter);
     }
@@ -63,6 +58,7 @@ public class DepartmentRepositoryFalseTests
         });
     }
 
+    [TestMethod]
     public void FindById_Result_WhenError()
     {
         var exception = Assert.ThrowsException<InternalException>(() =>
@@ -114,6 +110,7 @@ public class DepartmentRepositoryFalseTests
 
         var exception = Assert.ThrowsException<InternalException>(() =>
         {
+
             _repository.Update(departmentToUpdate);
         });
     }
