@@ -85,6 +85,18 @@ public class DepartmentRepository : IDepartmentRepository
         }
     }
 
+    public bool ExistsById(int id)
+    {
+        try
+        {
+            return _context.Employees.Any(i => i.EmpId == id);
+        }
+        catch (Exception e)
+        {
+            throw new InternalException("引数に指定された社員名の存在有無を取得できませんでした。", e);
+        }
+    }
+
     public void Create(Department department)
     {
         try

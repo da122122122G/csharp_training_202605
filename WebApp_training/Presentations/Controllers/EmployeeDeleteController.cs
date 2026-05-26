@@ -86,7 +86,7 @@ public class EmployeeDeleteController : Controller
             return View("Enter", viewModel);
         }
         // 選択された部署のIdで部署データを取得する
-        var department = _employeeDeleteService.GetById(viewModel.DeptId ?? 0);
+        var department = _employeeDeleteService.FindById(viewModel.DeptId ?? 0);
         _logger.LogInformation($"部署Id:{viewModel.DeptId ?? 0}の部署を取得する");
         // ViewModelに部署名を設定する
         viewModel.DeptName = department.Name;

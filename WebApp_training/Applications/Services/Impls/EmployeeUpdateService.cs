@@ -9,38 +9,33 @@ using WebApp_training.Infrastructures.Context;
 
 namespace WebApp_training.Applications.Services.Impls
 {
-    public class EmployeeDeleteService : IEmployeeDeleteService
+    public class EmployeeUpdateService : IEmployeeUpdateService
     {
         private readonly AppDbContext _context;
-        /// <summary>
-        /// ドメインオブジェクト:従業員のCRUD操作インターフェイス
-        /// </summary>
         private readonly IEmployeeRepository _employeeRepository;
         private readonly IDepartmentRepository _departmentRepository;
 
-
-        public EmployeeDeleteService(
-    AppDbContext context,
-    IEmployeeRepository employeeRepository,
-        IDepartmentRepository departmentRepository)
+        public EmployeeUpdateService(
+            AppDbContext context,
+            IEmployeeRepository employeeRepository,
+            IDepartmentRepository departmentRepository)
         {
             _context = context;
             _employeeRepository = employeeRepository;
             _departmentRepository = departmentRepository;
         }
-
-        public List<Department> GetDepartments()
+        public List<Employee> GetEmpsByDeptId(int deptId)
         {
-            return _departmentRepository.FindAll();
+            return _employeeRepository.GetEmpsByDeptId(deptId);
         }
-        public void Delete(Employee employee)
+        public void Update(Employee employee)
         {
             try
             {
                 // トランザクションの開始
                 _context.Database.BeginTransaction();
                 // 従業員の登録
-                _employeeRepository.Create(employee);
+                _employeeRepository.Update(employee);
                 // トランザクションのコミット
                 _context.Database.CommitTransaction();
             }
@@ -51,28 +46,5 @@ namespace WebApp_training.Applications.Services.Impls
                 throw;
             }
         }
-
-        public bool ExistsById(int id)
-        {
-            var result = _employeeRepository.ExistsById(id)!;
-            return result;
-        }
-
-        public Employee FindById(int id)
-        {
-            var result = _employeeRepository.FindById(id)!;
-            return result;
-        }
-
-        public Department GetById(int id)
-        {
-            var result = _departmentRepository.FindById(id)!;
-            if (result == null)
-            {
-                throw new NotFoundException($"部署Id{id}に該当する部署は存在しません");
-            }
-            return result;
-        }
-
     }
 }

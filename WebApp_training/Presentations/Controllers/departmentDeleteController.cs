@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WebApp_training.Applications.Services;
 using WebApp_training.Presentations.ViewModels;
+using WebApp_training.Applications.Domains;
 
 namespace WebApp_training.Presentations.Controllers;
 
@@ -18,7 +19,7 @@ public class DepartmentDeleteController : Controller
     /// <summary>
     /// 従業員登録サービスインターフェイス
     /// </summary>
-    private readonly IDepartmentDeleteService _DepartmentDeleteService;
+    private readonly IDepartmentDeleteService _departmentDeleteService;
     /// <summary>
     /// 従業員登録ViewModelをDepartmentに変換するアダプター
     /// </summary>
@@ -27,6 +28,7 @@ public class DepartmentDeleteController : Controller
     /// TempDataを通じて一時的にViewModelを保存・復元するためのクラス
     /// </summary>
     private readonly TempDataStore<DepartmentDeleteViewModel> _empDataStore;
+    private readonly IEmployeeUpdateService _employeeService;
 
     /// <summary>
     /// コンストラクタ
@@ -37,15 +39,19 @@ public class DepartmentDeleteController : Controller
     /// <param name="empDataStore">TempDataを通じて一時的にViewModelを保存・復元するためのクラス</param>
     public DepartmentDeleteController(
         ILogger<DepartmentDeleteController> logger,
-        IDepartmentDeleteService DepartmentDeleteService,
-        DepartmentDeleteViewModelAdapter DepartmentDeleteViewModelAdapter,
-        TempDataStore<DepartmentDeleteViewModel> empDataStore)
+        IDepartmentDeleteService departmentDeleteService,
+        DepartmentDeleteViewModelAdapter departmentDeleteViewModelAdapter,
+        TempDataStore<DepartmentDeleteViewModel> empDataStore,
+        IEmployeeUpdateService employeeService)
     {
         _logger = logger;
-        _DepartmentDeleteService = DepartmentDeleteService;
-        _adapter = DepartmentDeleteViewModelAdapter;
+        _departmentDeleteService = departmentDeleteService;
+        _adapter = departmentDeleteViewModelAdapter;
         _empDataStore = empDataStore;
+        _employeeService = employeeService;
     }
+
+
 
     /// <summary>
     /// 従業登録(入力)画面表示 アクションメソッド
@@ -82,7 +88,7 @@ public class DepartmentDeleteController : Controller
             return View("Enter", viewModel);
         }
 
-        if (!_DepartmentDeleteService.ExistsById(viewModel.DeptId))
+        if (!_departmentDeleteService.ExistsById(viewModel.DeptId))
         {
             ModelState.AddModelError(string.Empty, "対象の部署が見つかりません。既に削除された可能性があります。");
             PopulateDepartments(viewModel);
@@ -96,8 +102,8 @@ public class DepartmentDeleteController : Controller
             return View("Enter", viewModel);
         }
 
-        bool hasEmployees = _employeeService.HasEmployeesInDepartment(viewModel.DeptId);
-        viewModel.HasRelatedEmployees = hasEmployees;
+        //bool hasEmployees = _employeeService.HasEmployeesInDepartment(viewModel.DeptId);
+        //viewModel.HasRelatedEmployees = hasEmployees;
 
         _logger.LogInformation($"部署Id:{viewModel.DeptId} の削除確認画面を表示します。");
 
@@ -114,23 +120,23 @@ public class DepartmentDeleteController : Controller
     {
         try
         {
-            var employeesInDept = _employeeService.GetEmployeesByDepartmentId(viewModel.DeptId);
+            var employeesInDept = _employeeService.GetEmpsByDeptId(viewModel.DeptId);
 
             if (employeesInDept.Any())
             {
+                var defaultDepartment = new Department(1, "未所属");
                 foreach (var emp in employeesInDept)
                 {
-                    emp.DeptId = 1;
+                    emp.ChangeDepartment(defaultDepartment);
                     _employeeService.Update(emp);
                 }
                 _logger.LogInformation($"部署Id:{viewModel.DeptId} に所属していた {employeesInDept.Count()} 名の社員を部署Id:1に移動しました。");
             }
 
-            _departmentDeleteService.Delete(viewModel.DeptId);
-
+            var department = _adapter.Restore(viewModel);
+            _departmentDeleteService.Delete(department);
             _logger.LogInformation($"部署Id:{viewModel.DeptId} を削除しました。");
             TempData["DeletedDeptName"] = viewModel.Name;
-
             return RedirectToAction("Complete");
         }
         catch (Exception ex)
@@ -173,8 +179,8 @@ public class DepartmentDeleteController : Controller
     private void PopulateDepartments(DepartmentDeleteViewModel viewModel)
     {
         // 従業員登録サービスから部署一覧を取得する
-        var departments = _DepartmentDeleteService.GetDepartments();
-        var filteredDepartments = departments.Where(d => d.Id != 1);
+        var departments = _departmentDeleteService.GetDepartments();
+        var filteredDepartments = departments.Where(d => d.Id != 1).ToList();
         // 部署一覧をDepartmentDeleteViewModelに登録する
         viewModel.SetDepartments(filteredDepartments);
         _logger.LogInformation("部署ID:1を除外した部署リストを設定");

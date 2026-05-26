@@ -15,4 +15,6 @@ public interface IEmployeeRepository
     void Update(Employee employee);
     Employee? FindById(int id);
     Employee? FindByName(string name);
+    bool ExistsById(int id);
+    List<Employee> GetEmpsByDeptId(int deptId);
 }

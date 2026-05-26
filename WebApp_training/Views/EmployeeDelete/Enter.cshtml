@@ -15,10 +15,10 @@
 
                 <div class="mb-3">
                     @* Tag HelperがId属性やid属性を自動生成 Model Bindingに必要なHTMLが作成される*@
-                    <label asp-for="Id" class="form-label"></label>
-                    <input asp-for="Id" class="form-control" />
+                    <label asp-for="EmpId" class="form-label"></label>
+                    <input asp-for="EmpId" class="form-control" />
                     @*バリデーション(ModelState)エラーを表示する*@
-                    <span asp-validation-for="Id" class="text-danger"></span>
+                    <span asp-validation-for="EmpId" class="text-danger"></span>
                 </div>
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary">確認画面へ</button>

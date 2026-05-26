@@ -11,13 +11,13 @@
                 <tbody>
                     <tr>
                         @*EmployeeDeleteViewModelのNameプロパティの値を表示する*@
-                        <td class="fw-bold">@Html.DisplayNameFor(m => m.Id)</td>
-                        <td>@Html.DisplayFor(m => m.Id)</td>
+                        <td class="fw-bold">@Html.DisplayNameFor(m => m.EmpId)</td>
+                        <td>@Html.DisplayFor(m => m.EmpId)</td>
                     </tr>
                     <tr>
                         @*EmployeeDeleteViewModelのNameプロパティの値を表示する*@
-                        <td class="fw-bold">@Html.DisplayNameFor(m => m.Name)</td>
-                        <td>@Html.DisplayFor(m => m.Name)</td>
+                        <td class="fw-bold">@Html.DisplayNameFor(m => m.EmpName)</td>
+                        <td>@Html.DisplayFor(m => m.EmpName)</td>
                     </tr>
                     <tr>
                         @*EmployeeDeleteViewModelのPhoneNumプロパティの値を表示する*@
@@ -40,8 +40,8 @@
             <form>
                 @*POSTリクエスト(Delete/Back)に値を渡すためにhidden属性を使う*@
                 @*これがないと、次の画面で値が消えてしまう*@
-                <input type="hidden" asp-for="Id" />
-                <input type="hidden" asp-for="Name" />
+                <input type="hidden" asp-for="EmpId" />
+                <input type="hidden" asp-for="EmpName" />
                 <input type="hidden" asp-for="DeptId" />
                 <input type="hidden" asp-for="PhoneNum" />
                 <input type="hidden" asp-for="EMail" />

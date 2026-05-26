@@ -18,7 +18,7 @@ namespace WebApp_training.Applications.Services.Impls
         private readonly IDepartmentRepository _departmentRepository;
 
 
-        public DepartmentDeleService(
+        public DepartmentDeleteService(
     AppDbContext context,
     IDepartmentRepository departmentRepository)
         {
@@ -50,6 +50,28 @@ namespace WebApp_training.Applications.Services.Impls
             var result = _departmentRepository.ExistsByName(name)!;
             return result;
         }
+
+        public Department GetById(int id)
+        {
+            var result = _departmentRepository.FindById(id)!;
+            if (result == null)
+            {
+                throw new NotFoundException($"部署Id{id}に該当する部署は存在しません");
+            }
+            return result;
+        }
+
+        public List<Department> GetDepartments()
+        {
+            return _departmentRepository.FindAll();
+        }
+
+        public bool ExistsById(int id)
+        {
+            var result = _departmentRepository.ExistsById(id)!;
+            return result;
+        }
+
 
     }
 }

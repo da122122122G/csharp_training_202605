@@ -140,5 +140,30 @@ public class EmployeeRepository : IEmployeeRepository
                 "指定された名前を含む社員を取得できませんでした。", e);
         }
     }
+    public bool ExistsById(int id)
+    {
+        try
+        {
+            return _context.Employees.Any(i => i.EmpId == id);
+        }
+        catch (Exception e)
+        {
+            throw new InternalException("引数に指定された社員名の存在有無を取得できませんでした。", e);
+        }
+    }
+    public List<Employee> GetEmpsByDeptId(int deptId)
+    {
+        var entities = _context.Employees
+            .AsNoTracking()
+            .Where(e => e.DeptId == deptId)
+            .ToList();
 
+        return entities.Select(entity => new Employee(
+            entity.EmpId,
+            entity.EmpName,
+            entity.PhoneNum ?? string.Empty,
+            entity.EMail ?? string.Empty,
+            entity.DeptId.HasValue ? new Department(entity.DeptId.Value, "") : null
+        )).ToList();
+    }
 }

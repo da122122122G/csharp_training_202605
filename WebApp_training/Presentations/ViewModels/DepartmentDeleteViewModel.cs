@@ -15,10 +15,25 @@ public class DepartmentDeleteViewModel
     public string? Name { get; set; } = string.Empty;
 
     [Display(Name = "所属部署")]
-    public int? DeptId { get; set; } = 0;
+    public int DeptId { get; set; } = 0;
 
 
     public List<SelectListItem>? Departments { get; set; } = null;
+    public void SetDepartments(List<Department> departments)
+    {
+        // SelectListItemのリストを作成
+        var selectItems = new List<SelectListItem>();
+        foreach (var dept in departments)
+        {
+
+            var item = new SelectListItem();
+            item.Value = dept.Id.ToString();
+            item.Text = string.IsNullOrEmpty(dept.Name) ? "(名称未設定)" : dept.Name;
+            selectItems.Add(item);
+
+        }
+        Departments = selectItems;
+    }
 
     public override string ToString()
     {

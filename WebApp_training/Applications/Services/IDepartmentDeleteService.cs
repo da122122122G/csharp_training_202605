@@ -10,5 +10,7 @@ namespace WebApp_training.Applications.Services
     {
         void Delete(Department department);
         bool ExistsByName(string name);
+        bool ExistsById(int id);
+        List<Department> GetDepartments();
     }
 }

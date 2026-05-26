@@ -14,4 +14,6 @@ public interface IDepartmentRepository
     void Create(Department department);
     void Update(Department department);
     void Delete(Department department);
+
+    bool ExistsById(int id);
 }
