@@ -33,7 +33,7 @@ namespace WebApp_training.Applications.Services.Impls
                 // トランザクションの開始
                 _context.Database.BeginTransaction();
                 // 従業員の登録
-                _departmentRepository.Create(department);
+                _departmentRepository.Delete(department);
                 // トランザクションのコミット
                 _context.Database.CommitTransaction();
             }
@@ -61,7 +61,7 @@ namespace WebApp_training.Applications.Services.Impls
             return result;
         }
 
-        public List<Department> GetDepartments()
+        public List<Department> FindAll()
         {
             return _departmentRepository.FindAll();
         }
@@ -69,6 +69,11 @@ namespace WebApp_training.Applications.Services.Impls
         public bool ExistsById(int id)
         {
             var result = _departmentRepository.ExistsById(id)!;
+            return result;
+        }
+        public Department FindById(int deptId)
+        {
+            var result = _departmentRepository.FindById(deptId)!;
             return result;
         }
 

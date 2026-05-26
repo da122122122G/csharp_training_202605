@@ -13,14 +13,16 @@
             @* 送信先はControllerのConfirm()、POSTは入力値を送信する*@
             削除したい社員の社員番号を入力してください
             <form asp-action="Confirm" asp-controller="EmployeeDelete" method="post">
-
-                <div class="mb-3">
-                    @* Tag HelperがId属性やid属性を自動生成 Model Bindingに必要なHTMLが作成される*@
-                    <label asp-for="EmpId" class="form-label"></label>
-                    <input asp-for="EmpId" class="form-control" />
-                    @*バリデーション(ModelState)エラーを表示する*@
-                    <span asp-validation-for="EmpId" class="text-danger"></span>
-                </div>
+                
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                    <div class="mb-3">
+                        @* Tag HelperがId属性やid属性を自動生成 Model Bindingに必要なHTMLが作成される*@
+                        <label asp-for="EmpId" class="form-label"></label>
+                        <input asp-for="EmpId" class="form-control" />
+                        @*バリデーション(ModelState)エラーを表示する*@
+                        <span asp-validation-for="EmpId" class="text-danger"></span>
+                    
+                    </div>
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary">確認画面へ</button>
                 </div>

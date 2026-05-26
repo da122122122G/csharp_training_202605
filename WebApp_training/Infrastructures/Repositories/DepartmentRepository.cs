@@ -7,6 +7,7 @@ using WebApp_training.Applications.Domains;
 using WebApp_training.Applications.Repositories;
 using WebApp_training.Infrastructures.Adapters;
 using WebApp_training.Exceptions;
+using Microsoft.EntityFrameworkCore;
 
 namespace WebApp_training.Infrastructures.Repositories;
 

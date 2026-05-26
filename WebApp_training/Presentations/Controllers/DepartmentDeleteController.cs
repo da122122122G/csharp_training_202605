@@ -82,23 +82,24 @@ public class DepartmentDeleteController : Controller
     [HttpPost("Confirm")]
     public IActionResult Confirm(DepartmentDeleteViewModel viewModel)
     {
+        var department = _departmentDeleteService.FindById(viewModel.DeptId);
         if (!ModelState.IsValid)
         {
             PopulateDepartments(viewModel);
             return View("Enter", viewModel);
         }
 
-        if (!_departmentDeleteService.ExistsById(viewModel.DeptId))
+        else if (department == null)
         {
-            ModelState.AddModelError(string.Empty, "対象の部署が見つかりません。既に削除された可能性があります。");
-            PopulateDepartments(viewModel);
+            ModelState.AddModelError(nameof(viewModel.DeptId), "入力された社員番号は登録されていません");
+            // 入力画面の表示
             return View("Enter", viewModel);
         }
 
         if (viewModel.DeptId == 1)
         {
-            ModelState.AddModelError(string.Empty, "この部署はシステム予約されているため、削除できません。");
-            PopulateDepartments(viewModel);
+            ModelState.AddModelError(nameof(viewModel.DeptId), "1は削除できません");
+            // 入力画面の表示
             return View("Enter", viewModel);
         }
 
@@ -179,7 +180,7 @@ public class DepartmentDeleteController : Controller
     private void PopulateDepartments(DepartmentDeleteViewModel viewModel)
     {
         // 従業員登録サービスから部署一覧を取得する
-        var departments = _departmentDeleteService.GetDepartments();
+        var departments = _departmentDeleteService.FindAll();
         var filteredDepartments = departments.Where(d => d.Id != 1).ToList();
         // 部署一覧をDepartmentDeleteViewModelに登録する
         viewModel.SetDepartments(filteredDepartments);

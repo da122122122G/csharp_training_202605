@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WebApp_training.Applications.Services;
 using WebApp_training.Presentations.ViewModels;
+using WebApp_training.Exceptions;
+using System.Diagnostics.Eventing.Reader;
 
 namespace WebApp_training.Presentations.Controllers;
 
@@ -78,24 +80,29 @@ public class EmployeeDeleteController : Controller
     [HttpPost("Confirm")]
     public IActionResult Confirm(EmployeeDeleteViewModel viewModel)
     {
+        var employee = _employeeDeleteService.FindById(viewModel.EmpId);
         if (!ModelState.IsValid)
         {
             PopulateDepartments(viewModel);
             return View("Enter", viewModel);
         }
-        var department = _employeeDeleteService.FindById(viewModel.DeptId ?? 0);
-        _logger.LogInformation($"部署Id:{viewModel.DeptId ?? 0}の部署を取得する");
-
-        if (department == null)
+        else if (employee == null)
         {
-            ModelState.AddModelError(string.Empty, "選択された部署が存在しないか、既に削除されています。");
-
-            PopulateDepartments(viewModel);
+            ModelState.AddModelError(nameof(viewModel.EmpId), "入力された社員番号は登録されていません");
+            // 入力画面の表示
             return View("Enter", viewModel);
         }
-        viewModel.DeptName = department.Name;
+        else
+        {
+            viewModel.EmpName = employee.Name;
+            viewModel.DeptName = employee.Department?.Name ?? "未配属";
+            viewModel.PhoneNum = employee.PhoneNum;
+            viewModel.EMail = employee.EMail;
+        }
+
         return View(viewModel);
     }
+
 
     /// <summary>
     /// 確認画面の[登録]ボタンクリックアクションメソッド

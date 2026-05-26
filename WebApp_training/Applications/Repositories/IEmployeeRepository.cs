@@ -8,12 +8,12 @@ namespace WebApp_training.Applications.Repositories;
 
 public interface IEmployeeRepository
 {
-    void Create(Employee employee);
-    List<Employee> FindAll();
-    void Delete(Employee employee);
-    void Update(Employee employee);
-    Employee? FindById(int id);
+    void Create(Employee employee);//
+    List<Employee> FindAll();//
+    void Delete(Employee employee);//
+    void Update(Employee employee);//
+    Employee? FindById(int id);//
     Employee? FindByName(string name);
-    bool ExistsById(int id);
+    bool ExistsById(int id);//
     List<Employee> GetEmpsByDeptId(int deptId);
 }

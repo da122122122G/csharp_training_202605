@@ -40,7 +40,7 @@ namespace WebApp_training.Applications.Services.Impls
                 // トランザクションの開始
                 _context.Database.BeginTransaction();
                 // 従業員の登録
-                _employeeRepository.Create(employee);
+                _employeeRepository.Delete(employee);
                 // トランザクションのコミット
                 _context.Database.CommitTransaction();
             }
@@ -66,7 +66,7 @@ namespace WebApp_training.Applications.Services.Impls
 
         public Department GetById(int id)
         {
-            var result = _departmentRepository.FindById(id)!;
+            var result = _departmentRepository.FindById(id);
             if (result == null)
             {
                 throw new NotFoundException($"部署Id{id}に該当する部署は存在しません");

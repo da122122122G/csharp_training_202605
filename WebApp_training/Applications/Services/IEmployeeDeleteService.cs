@@ -9,10 +9,8 @@ namespace WebApp_training.Applications.Services;
 public interface IEmployeeDeleteService
 {
     List<Department> GetDepartments();
-
     bool ExistsById(int id);
     Employee FindById(int id);
-    Department GetById(int id);
-
+    Department? GetById(int id);
     void Delete(Employee employee);
 }

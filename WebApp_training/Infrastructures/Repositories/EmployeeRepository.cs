@@ -109,6 +109,7 @@ public class EmployeeRepository : IEmployeeRepository
         try
         {
             var result = _context.Employees
+            .Include(e => e.Department)
             .FirstOrDefault(e => e.EmpId == id);
             if (result == null)
             {

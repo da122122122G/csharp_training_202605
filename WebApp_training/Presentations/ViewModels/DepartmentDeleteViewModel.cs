@@ -16,7 +16,7 @@ public class DepartmentDeleteViewModel
 
     [Display(Name = "部署")]
     [Required(ErrorMessage = "{0}は入力必須です。")]
-    [Range(2, int.MaxValue, ErrorMessage = "{1}以上で入力してください。")]
+    [Range(2, 99999, ErrorMessage = "{1}~{2}の範囲で入力してください。")]
     public int DeptId { get; set; } = 2;
 
 
