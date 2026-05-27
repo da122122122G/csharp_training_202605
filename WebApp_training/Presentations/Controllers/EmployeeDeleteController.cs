@@ -80,15 +80,16 @@ public class EmployeeDeleteController : Controller
     [HttpPost("Confirm")]
     public IActionResult Confirm(EmployeeDeleteViewModel viewModel)
     {
-        var employee = _employeeDeleteService.FindById(viewModel.EmpId);
+
         if (!ModelState.IsValid)
         {
             PopulateDepartments(viewModel);
             return View("Enter", viewModel);
         }
-        else if (employee == null)
+        var employee = _employeeDeleteService.FindById(viewModel.EmpId!.Value);
+        if (employee == null)
         {
-            ModelState.AddModelError(nameof(viewModel.EmpId), "入力された社員番号は登録されていません");
+            ModelState.AddModelError(nameof(viewModel.EmpId), "入力された社員番号は登録されていません。");
             // 入力画面の表示
             return View("Enter", viewModel);
         }

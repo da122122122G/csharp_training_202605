@@ -4,6 +4,46 @@
 
 
 
-<div class="text-center">
-    TOPページ
+<div class="text-center" style="margin-top: 100px;">
+    
+    <h1 class="display-4 fw-bold text-dark">従業員・部署管理システム</h1>
+    
+    <p class="mt-4 lead text-muted">
+        実行したいメニューを選択してください。
+    </p>
+
+    <div class="container mt-5 mx-auto" style="max-width: 700px;">
+        <div class="row row-cols-2 g-4">
+        <div class="col">
+            <a asp-controller="EmployeeList" asp-action="List" class="btn btn-outline-primary btn-lg mx-2">
+                従業員一覧を表示
+            </a>  
+        </div>      
+        <div class="col">
+            <a asp-controller="DepartmentList" asp-action="List" class="btn btn-outline-success btn-lg mx-2">
+                部署一覧を表示
+            </a>
+        </div>
+        <div class="col">
+            <a asp-controller="EmployeeRegister" asp-action="Enter" class="btn btn-outline-primary btn-lg mx-2">
+                従業員を登録する
+            </a>
+        </div>
+        <div class="col">
+            <a asp-controller="DepartmentRegister" asp-action="Enter" class="btn btn-outline-success btn-lg mx-2">
+                部署を登録する
+            </a>
+        </div>
+        <div class="col">
+            <a asp-controller="EmployeeDelete" asp-action="Enter" class="btn btn-outline-primary btn-lg mx-2">
+                従業員を削除する
+            </a>
+        </div>
+        <div class="col">
+            <a asp-controller="EmployeeDelete" asp-action="Enter" class="btn btn-outline-success btn-lg mx-2">
+                部署を削除する
+            </a>
+        </div>
+    </div>
+
 </div>

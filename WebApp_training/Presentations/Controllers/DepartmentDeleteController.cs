@@ -91,14 +91,14 @@ public class DepartmentDeleteController : Controller
 
         else if (department == null)
         {
-            ModelState.AddModelError(nameof(viewModel.DeptId), "入力された社員番号は登録されていません");
+            ModelState.AddModelError(nameof(viewModel.DeptId), "入力された社員番号は登録されていません。");
             // 入力画面の表示
             return View("Enter", viewModel);
         }
 
         if (viewModel.DeptId == 1)
         {
-            ModelState.AddModelError(nameof(viewModel.DeptId), "1は削除できません");
+            ModelState.AddModelError(nameof(viewModel.DeptId), "1は削除できません。");
             // 入力画面の表示
             return View("Enter", viewModel);
         }
