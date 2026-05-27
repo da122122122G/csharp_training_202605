@@ -1,95 +1,147 @@
 <mxfile host="65bd71144e">
     <diagram name="ページ-1" id="QG6bFXOwcCPzWOT8HnzP">
-        <mxGraphModel dx="1406" dy="714" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="1232" dy="547" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
                 <mxCell id="DYZGsvSrBg4BRIJO99NX-1" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" parent="1" vertex="1">
-                    <mxGeometry x="385" y="250" width="10" height="260" as="geometry"/>
+                    <mxGeometry x="385" y="150" width="10" height="430" as="geometry"/>
                 </mxCell>
                 <mxCell id="DYZGsvSrBg4BRIJO99NX-2" value="&lt;span style=&quot;white-space: normal;&quot;&gt;ブラウザ&lt;/span&gt;" style="text;align=center;fontStyle=1;verticalAlign=middle;spacingLeft=3;spacingRight=3;strokeColor=none;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="345" y="200" width="90" height="26" as="geometry"/>
+                    <mxGeometry x="345" y="84" width="90" height="26" as="geometry"/>
                 </mxCell>
                 <mxCell id="DYZGsvSrBg4BRIJO99NX-11" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" parent="1" vertex="1">
-                    <mxGeometry x="1090" y="250" width="10" height="260" as="geometry"/>
+                    <mxGeometry x="1090" y="140" width="10" height="440" as="geometry"/>
                 </mxCell>
                 <mxCell id="DYZGsvSrBg4BRIJO99NX-12" value="&lt;span style=&quot;white-space: normal;&quot;&gt;AppDbContext&lt;/span&gt;" style="text;align=center;fontStyle=1;verticalAlign=middle;spacingLeft=3;spacingRight=3;strokeColor=none;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="1055" y="220" width="80" height="26" as="geometry"/>
+                    <mxGeometry x="1055" y="104" width="80" height="26" as="geometry"/>
                 </mxCell>
                 <mxCell id="DYZGsvSrBg4BRIJO99NX-38" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" parent="1" vertex="1">
-                    <mxGeometry x="520" y="250" width="10" height="260" as="geometry"/>
+                    <mxGeometry x="520" y="150" width="10" height="430" as="geometry"/>
                 </mxCell>
                 <mxCell id="DYZGsvSrBg4BRIJO99NX-39" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" parent="1" vertex="1">
-                    <mxGeometry x="670" y="250" width="10" height="260" as="geometry"/>
+                    <mxGeometry x="670" y="150" width="10" height="430" as="geometry"/>
                 </mxCell>
                 <mxCell id="DYZGsvSrBg4BRIJO99NX-40" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" parent="1" vertex="1">
-                    <mxGeometry x="770" y="260" width="10" height="250" as="geometry"/>
+                    <mxGeometry x="770" y="150" width="10" height="430" as="geometry"/>
                 </mxCell>
                 <mxCell id="DYZGsvSrBg4BRIJO99NX-41" value="Controller" style="text;align=center;fontStyle=1;verticalAlign=middle;spacingLeft=3;spacingRight=3;strokeColor=none;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="485" y="208" width="80" height="26" as="geometry"/>
-                </mxCell>
-                <mxCell id="DYZGsvSrBg4BRIJO99NX-42" value="部署&lt;span style=&quot;color: rgb(63, 63, 63); background-color: light-dark(#ffffff, var(--ge-dark-color, #121212));&quot;&gt;番号を入力&lt;/span&gt;&lt;div&gt;&lt;div&gt;削除ボタンを押す&lt;/div&gt;&lt;/div&gt;" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" parent="1" target="DYZGsvSrBg4BRIJO99NX-38" edge="1">
-                    <mxGeometry width="80" relative="1" as="geometry">
-                        <mxPoint x="395" y="300" as="sourcePoint"/>
-                        <mxPoint x="475" y="300" as="targetPoint"/>
-                    </mxGeometry>
+                    <mxGeometry x="485" y="92" width="80" height="26" as="geometry"/>
                 </mxCell>
                 <mxCell id="DYZGsvSrBg4BRIJO99NX-44" value="DepartmentDeleteService" style="text;align=center;fontStyle=1;verticalAlign=middle;spacingLeft=3;spacingRight=3;strokeColor=none;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="610" y="220" width="80" height="26" as="geometry"/>
+                    <mxGeometry x="635" y="104" width="80" height="26" as="geometry"/>
                 </mxCell>
                 <mxCell id="DYZGsvSrBg4BRIJO99NX-46" value="Repository" style="text;align=center;fontStyle=1;verticalAlign=middle;spacingLeft=3;spacingRight=3;strokeColor=none;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="735" y="226" width="80" height="26" as="geometry"/>
-                </mxCell>
-                <mxCell id="DYZGsvSrBg4BRIJO99NX-54" value="確認画面へ" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;" parent="1" edge="1">
-                    <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="519.9999999999998" y="340" as="sourcePoint"/>
-                        <mxPoint x="395" y="340" as="targetPoint"/>
-                    </mxGeometry>
+                    <mxGeometry x="735" y="118" width="80" height="26" as="geometry"/>
                 </mxCell>
                 <mxCell id="DYZGsvSrBg4BRIJO99NX-61" value="確認ボタンを押す" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" parent="1" edge="1">
                     <mxGeometry width="80" relative="1" as="geometry">
-                        <mxPoint x="395" y="376" as="sourcePoint"/>
-                        <mxPoint x="520" y="376" as="targetPoint"/>
+                        <mxPoint x="395" y="493" as="sourcePoint"/>
+                        <mxPoint x="520" y="493" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="DYZGsvSrBg4BRIJO99NX-62" value="Delete&lt;br&gt;&lt;div&gt;(department Department)&lt;/div&gt;" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" parent="1" edge="1" target="DYZGsvSrBg4BRIJO99NX-39">
+                <mxCell id="DYZGsvSrBg4BRIJO99NX-62" value="Delete&lt;br&gt;&lt;div&gt;(department Department)&lt;/div&gt;" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" parent="1" edge="1">
                     <mxGeometry y="16" width="80" relative="1" as="geometry">
-                        <mxPoint x="530" y="396" as="sourcePoint"/>
-                        <mxPoint x="640" y="396" as="targetPoint"/>
+                        <mxPoint x="530" y="513" as="sourcePoint"/>
+                        <mxPoint x="670" y="513" as="targetPoint"/>
                         <mxPoint x="-1" as="offset"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="DYZGsvSrBg4BRIJO99NX-63" value="Delete" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" parent="1" edge="1" source="DYZGsvSrBg4BRIJO99NX-39">
+                <mxCell id="DYZGsvSrBg4BRIJO99NX-63" value="Delete" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" parent="1" edge="1">
                     <mxGeometry x="0.0026" width="80" relative="1" as="geometry">
                         <mxPoint as="offset"/>
-                        <mxPoint x="690" y="416" as="sourcePoint"/>
-                        <mxPoint x="770" y="416" as="targetPoint"/>
+                        <mxPoint x="679.9999999999998" y="532.9999999999999" as="sourcePoint"/>
+                        <mxPoint x="770" y="533" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="DYZGsvSrBg4BRIJO99NX-64" value="&lt;div&gt;&lt;span style=&quot;background-color: light-dark(#ffffff, var(--ge-dark-color, #121212)); color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Restore&lt;/span&gt;&lt;/div&gt;" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" parent="1" edge="1">
                     <mxGeometry x="0.0026" width="80" relative="1" as="geometry">
                         <mxPoint as="offset"/>
-                        <mxPoint x="782" y="436" as="sourcePoint"/>
-                        <mxPoint x="930" y="436" as="targetPoint"/>
+                        <mxPoint x="782" y="553" as="sourcePoint"/>
+                        <mxPoint x="930" y="553" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="DYZGsvSrBg4BRIJO99NX-65" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" parent="1" vertex="1">
-                    <mxGeometry x="930" y="260" width="10" height="250" as="geometry"/>
+                    <mxGeometry x="930" y="480" width="10" height="100" as="geometry"/>
                 </mxCell>
                 <mxCell id="DYZGsvSrBg4BRIJO99NX-66" value="Adapter" style="text;align=center;fontStyle=1;verticalAlign=middle;spacingLeft=3;spacingRight=3;strokeColor=none;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="895" y="224" width="80" height="26" as="geometry"/>
+                    <mxGeometry x="895" y="450" width="80" height="26" as="geometry"/>
                 </mxCell>
                 <mxCell id="DYZGsvSrBg4BRIJO99NX-67" value="&lt;div&gt;&lt;span style=&quot;background-color: light-dark(#ffffff, var(--ge-dark-color, #121212)); color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Entity&lt;/span&gt;&lt;/div&gt;" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;entryX=0;entryY=0.781;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" edge="1">
                     <mxGeometry x="0.0026" width="80" relative="1" as="geometry">
                         <mxPoint as="offset"/>
-                        <mxPoint x="940" y="446" as="sourcePoint"/>
-                        <mxPoint x="1090" y="445.856" as="targetPoint"/>
+                        <mxPoint x="940" y="563" as="sourcePoint"/>
+                        <mxPoint x="1090" y="562.856" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="DYZGsvSrBg4BRIJO99NX-68" value="完了画面へ" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;" parent="1" edge="1">
                     <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="520" y="435.28999999999996" as="sourcePoint"/>
-                        <mxPoint x="400" y="435.28999999999996" as="targetPoint"/>
+                        <mxPoint x="520" y="552.29" as="sourcePoint"/>
+                        <mxPoint x="400" y="552.29" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="14" value="部署番号を入力&lt;div&gt;削除ボタンを押す&lt;/div&gt;" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1">
+                    <mxGeometry width="80" relative="1" as="geometry">
+                        <mxPoint x="395" y="160" as="sourcePoint"/>
+                        <mxPoint x="520" y="160" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="15" value="その部署は存在しません" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;" edge="1" parent="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="519.9999999999998" y="320" as="sourcePoint"/>
+                        <mxPoint x="395" y="320" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="17" value="&lt;div style=&quot;line-height: 60%;&quot;&gt;&lt;font style=&quot;font-size: 9px; line-height: 60%;&quot;&gt;alt&lt;/font&gt;&lt;div&gt;&lt;font style=&quot;font-size: 9px; line-height: 60%;&quot;&gt;ExistById ==False&lt;/font&gt;&lt;/div&gt;&lt;/div&gt;" style="shape=umlFrame;whiteSpace=wrap;html=1;pointerEvents=0;" vertex="1" parent="1">
+                    <mxGeometry x="340" y="210" width="810" height="140" as="geometry"/>
+                </mxCell>
+                <mxCell id="18" value="ExistById&lt;div&gt;(入力された部署番号)&lt;/div&gt;" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;entryX=0;entryY=0.047;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="DYZGsvSrBg4BRIJO99NX-39">
+                    <mxGeometry width="80" relative="1" as="geometry">
+                        <mxPoint x="530" y="170" as="sourcePoint"/>
+                        <mxPoint x="645" y="170" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="19" value="ExistById&lt;div&gt;(入力された部署番号)&lt;/div&gt;" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1">
+                    <mxGeometry width="80" relative="1" as="geometry">
+                        <mxPoint x="680" y="190" as="sourcePoint"/>
+                        <mxPoint x="770" y="190" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="20" value="ExistById&lt;div&gt;(入力された部署番号)&lt;/div&gt;" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1">
+                    <mxGeometry x="0.0046" width="80" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                        <mxPoint x="780" y="200" as="sourcePoint"/>
+                        <mxPoint x="1090" y="200" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="21" value="False" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;" edge="1" parent="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="1080" y="230" as="sourcePoint"/>
+                        <mxPoint x="530" y="230" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="22" value="確認画面へ" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;" edge="1" parent="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="519.9999999999998" y="460" as="sourcePoint"/>
+                        <mxPoint x="395" y="460" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="23" value="True" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;" edge="1" parent="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="1090" y="400" as="sourcePoint"/>
+                        <mxPoint x="780" y="400" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="24" value="True" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;" edge="1" parent="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="770" y="410" as="sourcePoint"/>
+                        <mxPoint x="680" y="410" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="25" value="True" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;" edge="1" parent="1" source="DYZGsvSrBg4BRIJO99NX-39">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="645" y="430" as="sourcePoint"/>
+                        <mxPoint x="530" y="430" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
             </root>
