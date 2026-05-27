@@ -74,5 +74,10 @@ namespace WebApp_training.Applications.Services.Impls
             return result;
         }
 
+        public IEnumerable<Employee> GetEmpsByDeptId(int deptId)
+        {
+            return _employeeRepository.GetEmpsByDeptId(deptId);
+
+        }
     }
 }

@@ -162,4 +162,5 @@ public class EmployeeRepository : IEmployeeRepository
 
         return entities.Select(entity => _adapter.Restore(entity)).ToList();
     }
+
 }

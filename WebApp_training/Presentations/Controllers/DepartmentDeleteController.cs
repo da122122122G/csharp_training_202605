@@ -105,8 +105,10 @@ public class DepartmentDeleteController : Controller
 
         //bool hasEmployees = _employeeService.HasEmployeesInDepartment(viewModel.DeptId);
         //viewModel.HasRelatedEmployees = hasEmployees;
+        var employeesInDept = _employeeService.GetEmpsByDeptId(viewModel.DeptId);
+        viewModel.BelongingEmployeeCount = employeesInDept.Count();
 
-        _logger.LogInformation($"部署Id:{viewModel.DeptId} の削除確認画面を表示します。");
+        _logger.LogInformation($"部署Id:{viewModel.DeptId}（所属人数: {viewModel.BelongingEmployeeCount}名）の削除確認画面を表示します。");
         viewModel.Name = department.Name;
 
         return View(viewModel);
@@ -123,6 +125,7 @@ public class DepartmentDeleteController : Controller
         try
         {
             var employeesInDept = _employeeService.GetEmpsByDeptId(viewModel.DeptId);
+            int movedCount = employeesInDept.Count();
 
             if (employeesInDept.Any())
             {
@@ -139,6 +142,8 @@ public class DepartmentDeleteController : Controller
             _departmentDeleteService.Delete(department);
             _logger.LogInformation($"部署Id:{viewModel.DeptId} を削除しました。");
             TempData["DeletedDeptName"] = viewModel.Name;
+            TempData["MovedEmployeeCount"] = movedCount;
+
             return RedirectToAction("Complete");
         }
         catch (Exception ex)
@@ -159,6 +164,7 @@ public class DepartmentDeleteController : Controller
     public IActionResult Complete()
     {
         ViewBag.DeletedDeptName = TempData["DeletedDeptName"] as string;
+        ViewBag.MovedEmployeeCount = TempData["MovedEmployeeCount"] as int? ?? 0;
         return View();
     }
 

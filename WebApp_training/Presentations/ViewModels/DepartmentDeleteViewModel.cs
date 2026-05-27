@@ -41,5 +41,7 @@ public class DepartmentDeleteViewModel
     {
         return $"DeptName={Name} , Departments={Departments} ";
     }
+
+    public int BelongingEmployeeCount { get; set; }
 }
 

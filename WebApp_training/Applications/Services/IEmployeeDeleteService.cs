@@ -13,4 +13,5 @@ public interface IEmployeeDeleteService
     Employee FindById(int id);
     Department? GetById(int id);
     void Delete(Employee employee);
+    IEnumerable<Employee> GetEmpsByDeptId(int deptId);
 }

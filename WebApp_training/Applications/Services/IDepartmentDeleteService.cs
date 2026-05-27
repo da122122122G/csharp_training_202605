@@ -13,5 +13,6 @@ namespace WebApp_training.Applications.Services
         bool ExistsById(int id);
         List<Department> FindAll();
         Department FindById(int id);
+
     }
 }

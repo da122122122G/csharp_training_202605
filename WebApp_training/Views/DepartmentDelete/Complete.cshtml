@@ -2,7 +2,7 @@
 @model DepartmentDeleteViewModel;
 @{
     ViewData["Title"] = "部署削除(完了)";
-    var deletedDeptName = TempData["DeletedDeptName"] as string;
+    var deletedDeptName = TempData["DeletedDeptName"] as string ?? ViewBag.DeletedDeptName as string;
 }
 <h2 class="text-center mt-4">@ViewData["Title"]</h2>
 <div class="container mt-5">
@@ -12,12 +12,18 @@
                 @* 部署名がちゃんと引き継がれているかチェックして表示を変える *@
                 @if (!string.IsNullOrEmpty(deletedDeptName))
                 {
-                    <p class="mb-0"><strong>@deletedDeptName</strong>の削除が完了しました。</p>
+                    <p class="mb-0">@deletedDeptName の削除が完了しました。</p>
                 }
                 else
                 {
-                    @* 万が一、URL直接入力などでアクセスされた場合の予備メッセージ *@
                     <p class="mb-0">部署の削除が完了しました。</p>
+
+                }
+                @if (ViewBag.MovedEmployeeCount > 0)
+                {
+                <p class="mb-0">
+                    所属していた @ViewBag.MovedEmployeeCount 名の社員の部署が「未所属」になりました。
+                </p>
                 }
             </div>
             @*入力画面に戻る*@
