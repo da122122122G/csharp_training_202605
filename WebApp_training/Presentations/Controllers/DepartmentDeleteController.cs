@@ -165,6 +165,10 @@ public class DepartmentDeleteController : Controller
     {
         ViewBag.DeletedDeptName = TempData["DeletedDeptName"] as string;
         ViewBag.MovedEmployeeCount = TempData["MovedEmployeeCount"] as int? ?? 0;
+        if (TempData["DeletedDeptName"] == null)
+        {
+            return RedirectToAction("Enter");
+        }
         return View();
     }
 
