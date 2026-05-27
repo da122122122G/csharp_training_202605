@@ -26,11 +26,13 @@ public class DepartmentListController : Controller
         var departments = _departmentService.FindAll();
 
 
-        var model = departments.Select(d => new DepartmentListItemViewModel
-        {
-            DeptId = d.Id,
-            DeptName = d.Name ?? string.Empty,
-        }).ToList();
+        var model = departments
+            .Where(d => d.Id != 1)
+            .Select(d => new DepartmentListItemViewModel
+            {
+                DeptId = d.Id,
+                DeptName = d.Name ?? string.Empty,
+            }).ToList();
 
 
         return View(model);

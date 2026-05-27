@@ -24,6 +24,8 @@ body {
 
 header {
   background-color:rgba(167, 238, 234, 0.5);
+  position: sticky;
+  top: 0;
   }
 
 
@@ -36,6 +38,6 @@ header {
 }
 
 .navbar-nav .nav-link.nav-btn:hover {
-    border: 2px solid rgb(0, 0, 0);
-    background-color: rgba(167, 238, 234, 0);
+    border: 2px solid rgba(167, 238, 234, 0.7);
+    background-color: rgba(167, 238, 234, 0.8);
 }
