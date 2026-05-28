@@ -96,4 +96,16 @@ public class EmployeeRegisterService : IEmployeeRegisterService
         }
     }
 
+    public bool ExistsByName(string name)
+    {
+        try
+        {
+            return _context.Employees.Any(i => i.EmpName == name);
+        }
+        catch (Exception e)
+        {
+            throw new InternalException("引数に指定された社員名の存在有無を取得できませんでした。", e);
+        }
+    }
+
 }

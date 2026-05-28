@@ -77,7 +77,7 @@ public class EmployeeRegisterController : Controller
     [HttpPost("Confirm")]
     public IActionResult Confirm(EmployeeRegisterViewModel viewModel)
     {
-        if (_employeeRegisterService.ExistsByEMail(viewModel.EMail!)) // 入力値あり
+        if (_employeeRegisterService.ExistsByEMail(viewModel.EMail!) && _employeeRegisterService.ExistsByName(viewModel.Name!)) // 入力値あり
         {
             ModelState.AddModelError(string.Empty, "その社員は既に登録されています。");
         }
@@ -128,7 +128,7 @@ public class EmployeeRegisterController : Controller
             // データが存在しない場合、入力画面にリダイレクト
             return RedirectToAction("Enter");
         }
-        if (!string.IsNullOrEmpty(viewModel.EMail) && _employeeRegisterService.ExistsByEMail(viewModel.EMail))
+        if (!string.IsNullOrEmpty(viewModel.EMail) && _employeeRegisterService.ExistsByEMail(viewModel.EMail) && _employeeRegisterService.ExistsByName(viewModel.Name!))
         {
             _logger.LogWarning($"重複登録を検知してブロックしました。Email: {viewModel.EMail}");
 
