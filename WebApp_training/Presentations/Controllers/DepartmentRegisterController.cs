@@ -102,6 +102,12 @@ public class DepartmentRegisterController : Controller
     [HttpPost("Register")]
     public IActionResult Register(DepartmentRegisterViewModel viewModel)
     {
+        if (!string.IsNullOrEmpty(viewModel.Name) && _departmentRegisterService.ExistsByName(viewModel.Name) == true) // 入力値あり
+        {
+            ModelState.AddModelError(nameof(viewModel.Name), "既に登録されています。");
+            // 入力画面の表示
+            return View("Enter", viewModel);
+        }
         // DepartmentRegisterViewModelをシリアライズして、TempDataに保存する
         _empDataStore.Save(this, viewModel);
         // 登録処理GETアクションメソッドにリダイレクトする

@@ -83,4 +83,17 @@ public class EmployeeRegisterService : IEmployeeRegisterService
             throw;
         }
     }
+
+    public bool ExistsByEMail(string eMail)
+    {
+        try
+        {
+            return _context.Employees.Any(i => i.EMail == eMail);
+        }
+        catch (Exception e)
+        {
+            throw new InternalException("引数に指定された社員名の存在有無を取得できませんでした。", e);
+        }
+    }
+
 }

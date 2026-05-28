@@ -26,4 +26,5 @@ public interface IEmployeeRegisterService
     /// </summary>
     /// <param name="employee"></param>
     void Register(Employee employee);
+    public bool ExistsByEMail(string EMail);
 }
