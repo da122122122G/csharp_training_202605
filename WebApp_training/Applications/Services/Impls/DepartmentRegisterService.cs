@@ -13,7 +13,7 @@ namespace WebApp_training.Applications.Services.Impls
     {
         private readonly AppDbContext _context;
         /// <summary>
-        /// ドメインオブジェクト:従業員のCRUD操作インターフェイス
+        /// ドメインオブジェクト:社員のCRUD操作インターフェイス
         /// </summary>
         private readonly IDepartmentRepository _departmentRepository;
 
@@ -32,7 +32,7 @@ namespace WebApp_training.Applications.Services.Impls
             {
                 // トランザクションの開始
                 _context.Database.BeginTransaction();
-                // 従業員の登録
+                // 社員の登録
                 _departmentRepository.Create(department);
                 // トランザクションのコミット
                 _context.Database.CommitTransaction();

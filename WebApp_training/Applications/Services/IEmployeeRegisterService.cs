@@ -22,7 +22,7 @@ public interface IEmployeeRegisterService
     Department GetById(int id);
 
     /// <summary>
-    /// 新しい従業員を登録する
+    /// 新しい社員を登録する
     /// </summary>
     /// <param name="employee"></param>
     void Register(Employee employee);

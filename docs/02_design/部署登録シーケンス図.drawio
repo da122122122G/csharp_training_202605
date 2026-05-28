@@ -34,7 +34,7 @@
             <mxPoint x="475" y="300" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="DYZGsvSrBg4BRIJO99NX-43" edge="1" parent="1" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;" value="その部門名は&lt;div&gt;既に存在しています&lt;/div&gt;">
+        <mxCell id="DYZGsvSrBg4BRIJO99NX-43" edge="1" parent="1" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;" value="その部署名は&lt;div&gt;既に存在しています&lt;/div&gt;">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="519.9999999999998" y="460" as="sourcePoint" />
             <mxPoint x="395" y="460" as="targetPoint" />

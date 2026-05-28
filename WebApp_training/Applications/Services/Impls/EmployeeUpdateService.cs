@@ -34,7 +34,7 @@ namespace WebApp_training.Applications.Services.Impls
             {
                 // トランザクションの開始
                 _context.Database.BeginTransaction();
-                // 従業員の登録
+                // 社員の登録
                 _employeeRepository.Update(employee);
                 // トランザクションのコミット
                 _context.Database.CommitTransaction();

@@ -3,7 +3,7 @@ DROP TABLE department;
 
 
 -- ============================
--- 部門 department
+-- 部署 department
 -- ============================
 CREATE TABLE department
 (

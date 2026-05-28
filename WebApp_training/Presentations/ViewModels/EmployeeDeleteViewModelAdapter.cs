@@ -18,7 +18,7 @@ public class EmployeeDeleteViewModelAdapter : IRestorer<Employee, EmployeeDelete
     {
         // Department(部署)を作成する
         var department = new Department(target.DeptId!.Value, target.DeptName);
-        // 削除するEmployee(従業員)を作成する
+        // 削除するEmployee(社員)を作成する
         var employee = new Employee(target.EmpId!.Value, target.EmpName!, target.PhoneNum!, target.EMail!, department);
         return employee;
     }

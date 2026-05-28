@@ -17,11 +17,11 @@ public class DepartmentDeleteController : Controller
     /// </summary>
     private readonly ILogger<DepartmentDeleteController> _logger;
     /// <summary>
-    /// 従業員登録サービスインターフェイス
+    /// 社員登録サービスインターフェイス
     /// </summary>
     private readonly IDepartmentDeleteService _departmentDeleteService;
     /// <summary>
-    /// 従業員登録ViewModelをDepartmentに変換するアダプター
+    /// 社員登録ViewModelをDepartmentに変換するアダプター
     /// </summary>
     private readonly DepartmentDeleteViewModelAdapter _adapter;
     /// <summary>
@@ -34,8 +34,8 @@ public class DepartmentDeleteController : Controller
     /// コンストラクタ
     /// </summary>
     /// <param name="logger">ロガー</param>
-    /// <param name="DepartmentDeleteService">従業員登録サービスインターフェイス</param>
-    /// <param name="DepartmentDeleteViewModelAdapter">従業員登録ViewModelをDepartmentに変換するアダプター</param>
+    /// <param name="DepartmentDeleteService">社員登録サービスインターフェイス</param>
+    /// <param name="DepartmentDeleteViewModelAdapter">社員登録ViewModelをDepartmentに変換するアダプター</param>
     /// <param name="empDataStore">TempDataを通じて一時的にViewModelを保存・復元するためのクラス</param>
     public DepartmentDeleteController(
         ILogger<DepartmentDeleteController> logger,
@@ -191,7 +191,7 @@ public class DepartmentDeleteController : Controller
     /// </summary>
     private void PopulateDepartments(DepartmentDeleteViewModel viewModel)
     {
-        // 従業員登録サービスから部署一覧を取得する
+        // 社員登録サービスから部署一覧を取得する
         var departments = _departmentDeleteService.FindAll();
         var filteredDepartments = departments.Where(d => d.Id != 1).ToList();
         // 部署一覧をDepartmentDeleteViewModelに登録する

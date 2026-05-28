@@ -9,8 +9,8 @@ namespace WebApp_training.Applications.Services;
 public interface IEmployeeService
 {
     /// <summary>
-    /// 全ての従業員を取得する
+    /// 全ての社員を取得する
     /// </summary>
-    /// <returns>従業員のリスト</returns>
+    /// <returns>社員のリスト</returns>
     List<Employee> FindAll();
 }
